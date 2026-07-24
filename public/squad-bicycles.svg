@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" fill="none">
+  <defs>
+    <filter id="redGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <radialGradient id="headlight" cx="0%" cy="50%" r="100%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#dc2626" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <g fill="#050505" stroke="#111111" stroke-width="1">
+    <!-- Ground silhouette line -->
+    <path d="M0 270 Q 300 265, 600 270 T 1200 268 L 1200 300 L 0 300 Z" fill="#050505"/>
+
+    <!-- Rider 1 (Lead Rider with Backpack) -->
+    <g transform="translate(900, 140)">
+      <!-- Headlight Beam -->
+      <polygon points="0,75 -220,40 -220,110" fill="url(#headlight)" opacity="0.6"/>
+      <!-- Bike Frame & Wheels -->
+      <circle cx="25" cy="85" r="32" stroke="#050505" stroke-width="8" fill="none"/>
+      <circle cx="125" cy="85" r="32" stroke="#050505" stroke-width="8" fill="none"/>
+      <!-- Frame lines -->
+      <path d="M25 85 L65 85 L105 45 L45 45 Z M65 85 L45 45 M105 45 L125 85 M105 45 L95 25 L115 25" stroke="#050505" stroke-width="6" fill="none"/>
+      <!-- Rider Body & Backpack -->
+      <path d="M45 40 Q 55 15, 68 15 Q 82 25, 75 48 L65 85" stroke="#050505" stroke-width="14" stroke-linecap="round"/>
+      <!-- Head -->
+      <circle cx="70" cy="8" r="14" fill="#050505"/>
+      <!-- Backpack -->
+      <rect x="35" y="20" width="18" height="24" rx="6" fill="#050505"/>
+      <!-- Arms to handlebars -->
+      <path d="M65 30 L100 28" stroke="#050505" stroke-width="8" stroke-linecap="round"/>
+      <!-- Legs pedaling -->
+      <path d="M60 55 L45 70 L65 85" stroke="#050505" stroke-width="8" stroke-linecap="round"/>
+    </g>
+
+    <!-- Rider 2 -->
+    <g transform="translate(630, 145)">
+      <polygon points="0,75 -200,45 -200,105" fill="url(#headlight)" opacity="0.5"/>
+      <circle cx="25" cy="85" r="30" stroke="#050505" stroke-width="8" fill="none"/>
+      <circle cx="120" cy="85" r="30" stroke="#050505" stroke-width="8" fill="none"/>
+      <path d="M25 85 L62 85 L100 45 L42 45 Z M62 85 L42 45 M100 45 L120 85 M100 45 L90 25 L110 25" stroke="#050505" stroke-width="6" fill="none"/>
+      <path d="M42 40 Q 52 18, 65 18 Q 78 28, 70 50 L60 85" stroke="#050505" stroke-width="13" stroke-linecap="round"/>
+      <circle cx="67" cy="10" r="13" fill="#050505"/>
+      <rect x="32" y="22" width="16" height="22" rx="5" fill="#050505"/>
+      <path d="M62 32 L95 28" stroke="#050505" stroke-width="8" stroke-linecap="round"/>
+    </g>
+
+    <!-- Rider 3 -->
+    <g transform="translate(360, 142)">
+      <polygon points="0,75 -200,45 -200,105" fill="url(#headlight)" opacity="0.5"/>
+      <circle cx="25" cy="85" r="31" stroke="#050505" stroke-width="8" fill="none"/>
+      <circle cx="122" cy="85" r="31" stroke="#050505" stroke-width="8" fill="none"/>
+      <path d="M25 85 L64 85 L102 45 L44 45 Z M64 85 L44 45 M102 45 L122 85 M102 45 L92 25 L112 25" stroke="#050505" stroke-width="6" fill="none"/>
+      <path d="M44 40 Q 54 16, 66 16 Q 80 26, 72 49 L62 85" stroke="#050505" stroke-width="14" stroke-linecap="round"/>
+      <circle cx="68" cy="9" r="14" fill="#050505"/>
+      <rect x="33" y="21" width="17" height="23" rx="5" fill="#050505"/>
+      <path d="M63 31 L97 28" stroke="#050505" stroke-width="8" stroke-linecap="round"/>
+    </g>
+
+    <!-- Rider 4 -->
+    <g transform="translate(90, 146)">
+      <polygon points="0,75 -190,45 -190,105" fill="url(#headlight)" opacity="0.4"/>
+      <circle cx="25" cy="85" r="29" stroke="#050505" stroke-width="8" fill="none"/>
+      <circle cx="118" cy="85" r="29" stroke="#050505" stroke-width="8" fill="none"/>
+      <path d="M25 85 L60 85 L98 45 L40 45 Z M60 85 L40 45 M98 45 L118 85 M98 45 L88 25 L108 25" stroke="#050505" stroke-width="6" fill="none"/>
+      <path d="M40 40 Q 50 19, 63 19 Q 75 29, 68 51 L58 85" stroke="#050505" stroke-width="13" stroke-linecap="round"/>
+      <circle cx="65" cy="11" r="13" fill="#050505"/>
+      <rect x="30" y="23" width="15" height="21" rx="5" fill="#050505"/>
+      <path d="M60 33 L93 28" stroke="#050505" stroke-width="8" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,283 @@
+@import 'tailwindcss';
+
+/* ============================================
+   NEXORAE 2.0 — Design System & Performance
+   ============================================ */
+
+@theme {
+  --color-void: #050505;
+  --color-void-light: #0a0a0a;
+  --color-surface: #111111;
+  --color-surface-elevated: #1a1a1a;
+  --color-glow: #dc2626;
+  --color-glow-bright: #ef4444;
+  --color-glow-dim: #991b1b;
+  --color-metallic: #c0c0c0;
+  --color-muted: #666666;
+  --color-dim: #333333;
+
+  --font-family-display: 'Playfair Display', serif;
+  --font-family-body: 'Inter', sans-serif;
+  --font-family-mono: 'JetBrains Mono', monospace;
+}
+
+/* ============================================
+   Base Styles & GPU Hardware Acceleration
+   ============================================ */
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #333 #050505;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #050505;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Force GPU composite layer promotion for smooth animations and canvas renders */
+  canvas,
+  video,
+  iframe,
+  .gpu-layer,
+  .glass,
+  .glass-strong,
+  .glass-glow,
+  .animate-fog-drift-1,
+  .animate-fog-drift-2 {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+@layer base {
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+}
+
+/* ============================================
+   Glassmorphism Utilities
+   ============================================ */
+
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-glow {
+    background: rgba(220, 38, 38, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(220, 38, 38, 0.15);
+  }
+}
+
+/* ============================================
+   Text Effects
+   ============================================ */
+
+@layer utilities {
+  .text-glow {
+    color: #ef4444;
+    text-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+  }
+
+  .text-glow-strong {
+    color: #ef4444;
+    text-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
+  }
+
+  .text-metallic {
+    background: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #c0c0c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #999999 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stranger-things-title {
+    font-family: 'ITC Benguiat', 'Cinzel Decorative', 'Playfair Display', serif;
+    color: #ffffff;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #cbd5e1 75%, #dc2626 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(220, 38, 38, 0.35);
+    letter-spacing: 0.05em;
+  }
+
+  .text-glow-title {
+    color: #ffffff;
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.9),
+      0 0 22px rgba(239, 68, 68, 0.95),
+      0 0 40px rgba(220, 38, 38, 0.8),
+      0 0 70px rgba(185, 28, 28, 0.6);
+    letter-spacing: 0.08em;
+  }
+
+  .bg-radial-vignette {
+    background: radial-gradient(circle at center, transparent 35%, rgba(5, 5, 5, 0.45) 75%, rgba(5, 5, 5, 0.9) 100%);
+  }
+
+  .vignette {
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.9) 100%);
+  }
+
+  .noise {
+    position: relative;
+  }
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+  }
+}
+
+/* ============================================
+   Smooth Film Grain Overlay (Hardware Accelerated)
+   ============================================ */
+
+.film-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.018;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  animation: grain 1.2s steps(4) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(-1%, -1%, 0); }
+  50% { transform: translate3d(1%, 1%, 0); }
+  75% { transform: translate3d(-1%, 1%, 0); }
+}
+
+/* ============================================
+   Animations (GPU Promoted)
+   ============================================ */
+
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0px, 0); }
+  50% { transform: translate3d(0, -20px, 0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(220, 38, 38, 0.4), 0 0 80px rgba(220, 38, 38, 0.1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate3d(0, 30px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
+  to { opacity: 1; transform: scale3d(1, 1, 1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translate3d(-40px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translate3d(40px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes fogDrift1 {
+  0% { transform: translate3d(-4%, 0, 0); }
+  50% { transform: translate3d(4%, -15px, 0); }
+  100% { transform: translate3d(-4%, 0, 0); }
+}
+
+@keyframes fogDrift2 {
+  0% { transform: translate3d(4%, -10px, 0); }
+  50% { transform: translate3d(-4%, 10px, 0); }
+  100% { transform: translate3d(4%, -10px, 0); }
+}
+
+.animate-fog-drift-1 {
+  animation: fogDrift1 18s ease-in-out infinite;
+}
+
+.animate-fog-drift-2 {
+  animation: fogDrift2 24s ease-in-out infinite;
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .film-grain { display: none; }
+}

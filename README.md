@@ -169,15 +169,10 @@ The backend API will run at `http://localhost:5000/api`.
 - **Input Sanitization & Rate Limiting**: Abuse-prone routes (such as student registration) enforce IP rate limiting (`express-rate-limit`).
 - **HTTP Security Headers**: `vercel.json` and `helmet` enforce `X-Frame-Options`, `X-Content-Type-Options`, and `X-XSS-Protection`.
 
----
 
-## 📜 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
 ## 👤 Author
 
-**IEEE GCET Student Branch & Development Team**
 - GitHub: [@Hitenmalviya](https://github.com/Hitenmalviya)

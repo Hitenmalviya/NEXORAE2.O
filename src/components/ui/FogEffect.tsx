@@ -2,9 +2,15 @@ import { useEffect, useRef } from 'react';
 
 interface FogEffectProps {
   colorScheme?: 'red' | 'blue';
+  fogCount?: number;
+  sporeCount?: number;
 }
 
-export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
+export default function FogEffect({ 
+  colorScheme = 'red',
+  fogCount: customFogCount,
+  sporeCount: customSporeCount
+}: FogEffectProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -65,7 +71,7 @@ export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
     }
 
     const fogParticles: FogParticle[] = [];
-    const fogCount = window.innerWidth < 768 ? 8 : 14;
+    const fogCount = customFogCount ?? (window.innerWidth < 768 ? 10 : 20);
 
     const colors = colorScheme === 'blue' 
       ? [
@@ -103,7 +109,7 @@ export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
     }
 
     const spores: Spore[] = [];
-    const sporeCount = window.innerWidth < 768 ? 14 : 26;
+    const sporeCount = customSporeCount ?? (window.innerWidth < 768 ? 20 : 40);
     for (let i = 0; i < sporeCount; i++) {
       spores.push({
         x: Math.random() * canvas.width,

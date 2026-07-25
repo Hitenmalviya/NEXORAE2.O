@@ -137,14 +137,10 @@ function ClassifiedEventCard({
         </div>
 
         {/* Metadata Footer */}
-        <div className="pt-3 sm:pt-4 border-t border-white/[0.06] grid grid-cols-2 gap-2 sm:gap-4 font-mono text-xs">
-          <div>
-            <span className="text-[8px] sm:text-[9px] uppercase tracking-widest text-zinc-500 block mb-0.5 sm:mb-1">Prize Bounty</span>
-            <span className="font-bold text-red-400 tracking-wider text-xs sm:text-sm">{event.prize || 'TBA'}</span>
-          </div>
+        <div className="pt-3 sm:pt-4 border-t border-white/[0.06] flex items-center justify-between gap-2 font-mono text-xs">
           <div>
             <span className="text-[8px] sm:text-[9px] uppercase tracking-widest text-zinc-500 block mb-0.5 sm:mb-1">Squad Size</span>
-            <span className="text-zinc-300 text-xs sm:text-sm">
+            <span className="text-zinc-300 text-xs sm:text-sm font-bold">
               {event.team
                 ? event.team.min === event.team.max
                   ? `${event.team.min} Operative`
@@ -303,14 +299,10 @@ export default function Events() {
               </div>
 
               {/* System Stats Bar */}
-              <div className="mt-6 sm:mt-10 pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 font-mono text-[9px] sm:text-[10px] text-zinc-400 uppercase tracking-widest">
+              <div className="mt-6 sm:mt-10 pt-4 sm:pt-6 border-t border-white/10 flex items-center justify-between gap-2 sm:gap-4 font-mono text-[9px] sm:text-[10px] text-zinc-400 uppercase tracking-widest">
                 <div className="flex items-center gap-2">
                   <span className="text-red-500 font-bold">SYSTEM LOG:</span>
                   <span>12 ACTIVE ARENAS DETECTED</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-zinc-500">PRIZE POOL:</span>
-                  <span className="text-red-400 font-bold">₹70,000+ COMBINED</span>
                 </div>
               </div>
             </div>

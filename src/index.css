@@ -281,3 +281,214 @@
   }
   .film-grain { display: none; }
 }
+
+/* ============================================
+   Stranger Things Hero Section Styles
+   ============================================ */
+
+.st-hero {
+  height: 100vh;
+  min-height: 100dvh;
+  background-image: url('/images/will1.webp');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.fire-reveal {
+  background-position: 40% 7% !important;
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/v1.png');
+  background-size: cover;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+  --tx: calc(var(--x, 50%) - 24px);
+  --ty: calc(var(--y, 50%) - 18px);
+
+  mask-image:
+    radial-gradient(circle 400px at var(--x, 50%) var(--y, 50%),
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.6) 40%,
+      transparent 70%),
+    radial-gradient(circle 450px at calc(var(--x, 50%) + 50px) calc(var(--y, 50%) - 40px),
+      rgba(255,255,255,0.8) 0%,
+      rgba(255,255,255,0.4) 40%,
+      transparent 70%),
+    radial-gradient(circle 200px at calc(var(--x, 50%) - 50px) calc(var(--y, 50%) + 30px),
+      rgba(255,255,255,0.6) 0%,
+      rgba(255,255,255,0.3) 40%,
+      transparent 70%);
+  -webkit-mask-image:
+    radial-gradient(circle 400px at var(--x, 50%) var(--y, 50%),
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.6) 40%,
+      transparent 70%),
+    radial-gradient(circle 450px at calc(var(--x, 50%) + 50px) calc(var(--y, 50%) - 40px),
+      rgba(255,255,255,0.8) 0%,
+      rgba(255,255,255,0.4) 40%,
+      transparent 70%),
+    radial-gradient(circle 400px at calc(var(--x, 50%) - 50px) calc(var(--y, 50%) + 30px),
+      rgba(255,255,255,0.6) 0%,
+      rgba(255,255,255,0.3) 40%,
+      transparent 70%);
+
+  animation: pulseBlob 3s ease-in-out infinite;
+}
+
+.fire-reveal.active {
+  opacity: 1;
+}
+
+@keyframes pulseBlob {
+  0%, 100% {
+    filter: blur(0px);
+  }
+  50% {
+    filter: blur(0px);
+  }
+}
+
+.st-hero-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.st-center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 0 20px;
+  max-width: 850px;
+  width: 100%;
+  pointer-events: auto;
+  margin-top: 30px;
+}
+
+.st-logo-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.st-logo-img {
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(220, 38, 38, 0.5));
+}
+
+.st-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.st-btn {
+  font-size: 14px;
+  padding: 12px 26px;
+  border-radius: 6px;
+  background-color: black;
+  color: aliceblue;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.st-btn:hover {
+  background-color: #111;
+  border-color: #ef4444;
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.7);
+}
+
+.st-btn-secondary {
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+  padding: 12px 26px;
+  border-radius: 6px;
+  background-color: rgba(10, 10, 10, 0.85);
+  color: aliceblue;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  width: fit-content;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.st-btn-secondary:hover {
+  background-color: #111;
+  border-color: rgba(239, 68, 68, 0.8);
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+  color: #ffffff;
+}
+
+/* Responsive Breakpoints for Stranger Things Hero */
+@media (max-width: 1024px) {
+  .st-logo-img {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 768px) {
+  .st-hero {
+    background-image: url('/images/hero-mobile.jpg');
+    background-size: cover;
+    background-position: center center;
+  }
+  .fire-reveal {
+    display: none;
+  }
+  .st-hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    background: linear-gradient(180deg, rgba(5, 5, 5, 0.1) 0%, rgba(5, 5, 5, 0.65) 100%);
+  }
+  .st-center-container {
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .st-buttons-container {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+  }
+  .st-logo-img {
+    max-width: 88vw;
+  }
+  .st-btn,
+  .st-btn-secondary {
+    font-size: 12px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    width: auto;
+    min-width: 190px;
+    max-width: 230px;
+    letter-spacing: 0.12em;
+  }
+}
+

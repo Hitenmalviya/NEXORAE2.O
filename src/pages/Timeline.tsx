@@ -389,11 +389,6 @@ export default function Timeline() {
                             📍 {item.venue}
                           </span>
                         )}
-                        {item.prize && (
-                          <span className="flex items-center gap-1 text-glow font-bold">
-                            🏆 {item.prize}
-                          </span>
-                        )}
                       </div>
                     </div>
                   </div>

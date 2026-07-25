@@ -170,7 +170,6 @@ The backend API will run at `http://localhost:5000/api`.
 - **HTTP Security Headers**: `vercel.json` and `helmet` enforce `X-Frame-Options`, `X-Content-Type-Options`, and `X-XSS-Protection`.
 
 
-
 ---
 
 ## 👤 Author

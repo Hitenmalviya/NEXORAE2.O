@@ -15,6 +15,8 @@ export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
     if (!ctx) return;
 
     let animationFrameId: number;
+    let targetMouseX = -1000;
+    let targetMouseY = -1000;
     let mouseX = -1000;
     let mouseY = -1000;
 
@@ -24,14 +26,18 @@ export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
       canvas.height = parent ? parent.clientHeight : window.innerHeight;
     };
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
+      targetMouseX = e.clientX - rect.left;
+      targetMouseY = e.clientY - rect.top;
+      if (mouseX <= -500) {
+        mouseX = targetMouseX;
+        mouseY = targetMouseY;
+      }
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     // Fog puff particle class
     interface FogParticle {
@@ -113,9 +119,14 @@ export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      if (targetMouseX > -500 && targetMouseY > -500) {
+        mouseX += (targetMouseX - mouseX) * 0.35;
+        mouseY += (targetMouseY - mouseY) * 0.35;
+      }
+
       // Render Interactive Cursor Glow Aura
       if (mouseX > -500 && mouseY > -500) {
-        const cursorGlow = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 280);
+        const cursorGlow = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 220);
         if (colorScheme === 'blue') {
           cursorGlow.addColorStop(0, 'rgba(59, 130, 246, 0.12)');
           cursorGlow.addColorStop(0.5, 'rgba(30, 58, 138, 0.04)');
@@ -126,7 +137,7 @@ export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
         cursorGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = cursorGlow;
         ctx.beginPath();
-        ctx.arc(mouseX, mouseY, 280, 0, Math.PI * 2);
+        ctx.arc(mouseX, mouseY, 220, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -145,7 +156,7 @@ export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
         const dx = p.x - mouseX;
         const dy = p.y - mouseY;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const interactRadius = 350;
+        const interactRadius = 270;
 
         if (dist < interactRadius && dist > 0) {
           const force = (interactRadius - dist) / interactRadius;

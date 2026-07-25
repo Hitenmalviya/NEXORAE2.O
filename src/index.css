@@ -74,7 +74,11 @@
    ============================================ */
 
 @layer base {
-  h1, h2, h3, h4 {
+
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     letter-spacing: 0.02em;
@@ -150,7 +154,7 @@
 
   .text-glow-title {
     color: #ffffff;
-    text-shadow: 
+    text-shadow:
       0 0 10px rgba(255, 255, 255, 0.9),
       0 0 22px rgba(239, 68, 68, 0.95),
       0 0 40px rgba(220, 38, 38, 0.8),
@@ -169,6 +173,7 @@
   .noise {
     position: relative;
   }
+
   .noise::after {
     content: '';
     position: absolute;
@@ -198,10 +203,23 @@
 }
 
 @keyframes grain {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  25% { transform: translate3d(-1%, -1%, 0); }
-  50% { transform: translate3d(1%, 1%, 0); }
-  75% { transform: translate3d(-1%, 1%, 0); }
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate3d(-1%, -1%, 0);
+  }
+
+  50% {
+    transform: translate3d(1%, 1%, 0);
+  }
+
+  75% {
+    transform: translate3d(-1%, 1%, 0);
+  }
 }
 
 /* ============================================
@@ -209,55 +227,125 @@
    ============================================ */
 
 @keyframes float {
-  0%, 100% { transform: translate3d(0, 0px, 0); }
-  50% { transform: translate3d(0, -20px, 0); }
+
+  0%,
+  100% {
+    transform: translate3d(0, 0px, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -20px, 0);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(220, 38, 38, 0.4), 0 0 80px rgba(220, 38, 38, 0.1); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(220, 38, 38, 0.4), 0 0 80px rgba(220, 38, 38, 0.1);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translate3d(0, 30px, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes scaleIn {
-  from { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
-  to { opacity: 1; transform: scale3d(1, 1, 1); }
+  from {
+    opacity: 0;
+    transform: scale3d(0.9, 0.9, 1);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
 }
 
 @keyframes slideInLeft {
-  from { opacity: 0; transform: translate3d(-40px, 0, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
+  from {
+    opacity: 0;
+    transform: translate3d(-40px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes slideInRight {
-  from { opacity: 0; transform: translate3d(40px, 0, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
+  from {
+    opacity: 0;
+    transform: translate3d(40px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes breathe {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
 }
 
 @keyframes fogDrift1 {
-  0% { transform: translate3d(-4%, 0, 0); }
-  50% { transform: translate3d(4%, -15px, 0); }
-  100% { transform: translate3d(-4%, 0, 0); }
+  0% {
+    transform: translate3d(-4%, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(4%, -15px, 0);
+  }
+
+  100% {
+    transform: translate3d(-4%, 0, 0);
+  }
 }
 
 @keyframes fogDrift2 {
-  0% { transform: translate3d(4%, -10px, 0); }
-  50% { transform: translate3d(-4%, 10px, 0); }
-  100% { transform: translate3d(4%, -10px, 0); }
+  0% {
+    transform: translate3d(4%, -10px, 0);
+  }
+
+  50% {
+    transform: translate3d(-4%, 10px, 0);
+  }
+
+  100% {
+    transform: translate3d(4%, -10px, 0);
+  }
 }
 
 .animate-fog-drift-1 {
@@ -273,13 +361,19 @@
    ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .film-grain { display: none; }
+
+  .film-grain {
+    display: none;
+  }
 }
 
 /* ============================================
@@ -309,30 +403,30 @@
   --ty: calc(var(--y, 50%) - 18px);
 
   mask-image:
-    radial-gradient(circle 650px at var(--x, 50%) var(--y, 50%),
-      rgba(255,255,255,1) 0%,
-      rgba(255,255,255,0.7) 45%,
+    radial-gradient(circle 400px at var(--x, 50%) var(--y, 50%),
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.7) 45%,
       transparent 75%),
-    radial-gradient(circle 700px at calc(var(--x, 50%) + 60px) calc(var(--y, 50%) - 50px),
-      rgba(255,255,255,0.85) 0%,
-      rgba(255,255,255,0.5) 45%,
+    radial-gradient(circle 440px at calc(var(--x, 50%) + 60px) calc(var(--y, 50%) - 50px),
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.5) 45%,
       transparent 75%),
-    radial-gradient(circle 450px at calc(var(--x, 50%) - 60px) calc(var(--y, 50%) + 40px),
-      rgba(255,255,255,0.7) 0%,
-      rgba(255,255,255,0.35) 45%,
+    radial-gradient(circle 240px at calc(var(--x, 50%) - 60px) calc(var(--y, 50%) + 40px),
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.35) 45%,
       transparent 75%);
   -webkit-mask-image:
-    radial-gradient(circle 650px at var(--x, 50%) var(--y, 50%),
-      rgba(255,255,255,1) 0%,
-      rgba(255,255,255,0.7) 45%,
+    radial-gradient(circle 400px at var(--x, 50%) var(--y, 50%),
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.7) 45%,
       transparent 75%),
-    radial-gradient(circle 700px at calc(var(--x, 50%) + 60px) calc(var(--y, 50%) - 50px),
-      rgba(255,255,255,0.85) 0%,
-      rgba(255,255,255,0.5) 45%,
+    radial-gradient(circle 440px at calc(var(--x, 50%) + 60px) calc(var(--y, 50%) - 50px),
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.5) 45%,
       transparent 75%),
-    radial-gradient(circle 650px at calc(var(--x, 50%) - 60px) calc(var(--y, 50%) + 40px),
-      rgba(255,255,255,0.7) 0%,
-      rgba(255,255,255,0.35) 45%,
+    radial-gradient(circle 240px at calc(var(--x, 50%) - 60px) calc(var(--y, 50%) + 40px),
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.35) 45%,
       transparent 75%);
 
   animation: pulseBlob 3s ease-in-out infinite;
@@ -343,9 +437,12 @@
 }
 
 @keyframes pulseBlob {
-  0%, 100% {
+
+  0%,
+  100% {
     filter: blur(0px);
   }
+
   50% {
     filter: blur(0px);
   }
@@ -457,9 +554,11 @@
     background-size: cover;
     background-position: center center;
   }
+
   .fire-reveal {
     display: none;
   }
+
   .st-hero-content {
     display: flex;
     align-items: center;
@@ -467,19 +566,23 @@
     padding: 20px 16px;
     background: linear-gradient(180deg, rgba(5, 5, 5, 0.1) 0%, rgba(5, 5, 5, 0.65) 100%);
   }
+
   .st-center-container {
     gap: 16px;
     margin-top: 10px;
   }
+
   .st-buttons-container {
     flex-direction: column;
     gap: 10px;
     width: 100%;
     align-items: center;
   }
+
   .st-logo-img {
     max-width: 88vw;
   }
+
   .st-btn,
   .st-btn-secondary {
     font-size: 12px;
@@ -491,4 +594,3 @@
     letter-spacing: 0.12em;
   }
 }
-

@@ -19,8 +19,8 @@ export default function CinematicHero() {
     let animId: number;
 
     const animate = () => {
-      x += (mouseX - x) * 0.28;
-      y += (mouseY - y) * 0.28;
+      x += (mouseX - x) * 0.35;
+      y += (mouseY - y) * 0.35;
 
       if (reveal) {
         reveal.style.setProperty('--x', `${x}px`);
@@ -66,11 +66,11 @@ export default function CinematicHero() {
       reveal.classList.remove('active');
     };
 
-    hero.addEventListener('mousemove', handleMouseMove);
-    hero.addEventListener('mouseleave', handleLeave);
+    hero.addEventListener('mousemove', handleMouseMove, { passive: true });
+    hero.addEventListener('mouseleave', handleLeave, { passive: true });
     hero.addEventListener('touchstart', handleTouchStart, { passive: true });
     hero.addEventListener('touchmove', handleTouchMove, { passive: true });
-    hero.addEventListener('touchend', handleLeave);
+    hero.addEventListener('touchend', handleLeave, { passive: true });
 
     return () => {
       cancelAnimationFrame(animId);

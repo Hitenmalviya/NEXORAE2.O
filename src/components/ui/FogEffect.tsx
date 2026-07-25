@@ -115,18 +115,18 @@ export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
 
       // Render Interactive Cursor Glow Aura
       if (mouseX > -500 && mouseY > -500) {
-        const cursorGlow = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 280);
+        const cursorGlow = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 180);
         if (colorScheme === 'blue') {
           cursorGlow.addColorStop(0, 'rgba(59, 130, 246, 0.12)');
           cursorGlow.addColorStop(0.5, 'rgba(30, 58, 138, 0.04)');
         } else {
-          cursorGlow.addColorStop(0, 'rgba(239, 68, 68, 0.08)');
-          cursorGlow.addColorStop(0.5, 'rgba(185, 28, 28, 0.03)');
+          cursorGlow.addColorStop(0, 'rgba(239, 68, 68, 0.12)');
+          cursorGlow.addColorStop(0.5, 'rgba(185, 28, 28, 0.04)');
         }
         cursorGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = cursorGlow;
         ctx.beginPath();
-        ctx.arc(mouseX, mouseY, 280, 0, Math.PI * 2);
+        ctx.arc(mouseX, mouseY, 180, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -145,7 +145,7 @@ export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
         const dx = p.x - mouseX;
         const dy = p.y - mouseY;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const interactRadius = 350;
+        const interactRadius = 220;
 
         if (dist < interactRadius && dist > 0) {
           const force = (interactRadius - dist) / interactRadius;
@@ -181,7 +181,7 @@ export default function FogEffect({ colorScheme = 'red' }: FogEffectProps) {
         const dx = s.x - mouseX;
         const dy = s.y - mouseY;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const sporeInteractRadius = 240;
+        const sporeInteractRadius = 160;
 
         if (dist < sporeInteractRadius && dist > 0) {
           const force = (sporeInteractRadius - dist) / sporeInteractRadius;

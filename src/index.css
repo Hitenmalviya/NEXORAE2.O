@@ -309,31 +309,31 @@
   --ty: calc(var(--y, 50%) - 18px);
 
   mask-image:
-    radial-gradient(circle 650px at var(--x, 50%) var(--y, 50%),
+    radial-gradient(circle 400px at var(--x, 50%) var(--y, 50%),
       rgba(255,255,255,1) 0%,
-      rgba(255,255,255,0.7) 45%,
-      transparent 75%),
-    radial-gradient(circle 700px at calc(var(--x, 50%) + 60px) calc(var(--y, 50%) - 50px),
-      rgba(255,255,255,0.85) 0%,
-      rgba(255,255,255,0.5) 45%,
-      transparent 75%),
-    radial-gradient(circle 450px at calc(var(--x, 50%) - 60px) calc(var(--y, 50%) + 40px),
-      rgba(255,255,255,0.7) 0%,
-      rgba(255,255,255,0.35) 45%,
-      transparent 75%);
+      rgba(255,255,255,0.6) 40%,
+      transparent 70%),
+    radial-gradient(circle 450px at calc(var(--x, 50%) + 50px) calc(var(--y, 50%) - 40px),
+      rgba(255,255,255,0.8) 0%,
+      rgba(255,255,255,0.4) 40%,
+      transparent 70%),
+    radial-gradient(circle 200px at calc(var(--x, 50%) - 50px) calc(var(--y, 50%) + 30px),
+      rgba(255,255,255,0.6) 0%,
+      rgba(255,255,255,0.3) 40%,
+      transparent 70%);
   -webkit-mask-image:
-    radial-gradient(circle 650px at var(--x, 50%) var(--y, 50%),
+    radial-gradient(circle 400px at var(--x, 50%) var(--y, 50%),
       rgba(255,255,255,1) 0%,
-      rgba(255,255,255,0.7) 45%,
-      transparent 75%),
-    radial-gradient(circle 700px at calc(var(--x, 50%) + 60px) calc(var(--y, 50%) - 50px),
-      rgba(255,255,255,0.85) 0%,
-      rgba(255,255,255,0.5) 45%,
-      transparent 75%),
-    radial-gradient(circle 650px at calc(var(--x, 50%) - 60px) calc(var(--y, 50%) + 40px),
-      rgba(255,255,255,0.7) 0%,
-      rgba(255,255,255,0.35) 45%,
-      transparent 75%);
+      rgba(255,255,255,0.6) 40%,
+      transparent 70%),
+    radial-gradient(circle 450px at calc(var(--x, 50%) + 50px) calc(var(--y, 50%) - 40px),
+      rgba(255,255,255,0.8) 0%,
+      rgba(255,255,255,0.4) 40%,
+      transparent 70%),
+    radial-gradient(circle 400px at calc(var(--x, 50%) - 50px) calc(var(--y, 50%) + 30px),
+      rgba(255,255,255,0.6) 0%,
+      rgba(255,255,255,0.3) 40%,
+      transparent 70%);
 
   animation: pulseBlob 3s ease-in-out infinite;
 }

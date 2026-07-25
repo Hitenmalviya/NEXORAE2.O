@@ -123,10 +123,20 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom Left: Published by Hiten Malviya */}
-        <div className="flex items-center justify-start pt-2">
-          <p className="text-sm sm:text-base font-medium text-white tracking-wide drop-shadow-md">
-            Published by Hiten Malviya
+        {/* Bottom Center: Published by Hiten Malviya */}
+        <div className="flex items-center justify-center pt-2 text-center">
+          <p className="text-sm sm:text-base font-medium text-white tracking-wide drop-shadow-md text-center">
+            Published by{' '}
+            <a
+              href="https://www.linkedin.com/in/hiten-malviya-537632318?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-red-500 underline underline-offset-4 transition-colors duration-300"
+              onMouseEnter={() => document.body.classList.add('cursor-hover')}
+              onMouseLeave={() => document.body.classList.remove('cursor-hover')}
+            >
+              Hiten Malviya
+            </a>
           </p>
         </div>
       </div>

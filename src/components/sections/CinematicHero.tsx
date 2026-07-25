@@ -19,8 +19,8 @@ export default function CinematicHero() {
     let animId: number;
 
     const animate = () => {
-      x += (mouseX - x) * 0.05;
-      y += (mouseY - y) * 0.05;
+      x += (mouseX - x) * 0.28;
+      y += (mouseY - y) * 0.28;
 
       if (reveal) {
         reveal.style.setProperty('--x', `${x}px`);
@@ -38,6 +38,8 @@ export default function CinematicHero() {
       mouseY = clientY - rect.top;
 
       if (!visible) {
+        x = mouseX;
+        y = mouseY;
         visible = true;
         reveal.classList.add('active');
       }

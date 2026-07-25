@@ -304,7 +304,7 @@
   background-size: cover;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.55s ease;
+  transition: opacity 0.25s ease-out;
   --tx: calc(var(--x, 50%) - 24px);
   --ty: calc(var(--y, 50%) - 18px);
 

@@ -16,10 +16,10 @@ export default function CustomCursor() {
     if (isTouch) return;
 
     const animate = () => {
-      pos.current.x = lerp(pos.current.x, mouse.x, 0.2);
-      pos.current.y = lerp(pos.current.y, mouse.y, 0.2);
-      ringPos.current.x = lerp(ringPos.current.x, mouse.x, 0.08);
-      ringPos.current.y = lerp(ringPos.current.y, mouse.y, 0.08);
+      pos.current.x = lerp(pos.current.x, mouse.x, 0.4);
+      pos.current.y = lerp(pos.current.y, mouse.y, 0.4);
+      ringPos.current.x = lerp(ringPos.current.x, mouse.x, 0.22);
+      ringPos.current.y = lerp(ringPos.current.y, mouse.y, 0.22);
 
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${pos.current.x - 6}px, ${pos.current.y - 6}px)`;

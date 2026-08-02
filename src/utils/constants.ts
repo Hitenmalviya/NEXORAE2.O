@@ -1,10 +1,10 @@
 export const SITE_CONFIG = {
   name: 'NEXORAE 2.0',
   tagline: 'Where Innovation Meets the Future',
-  description: 'NEXORAE 2.0 — A premium tech fest by IEEE GCET Student Branch. 12 electrifying events across Tech, Design, and Fun.',
+  description: 'NEXORAE 2.0 — A premium tech fest by IEEE GCET Student Branch. 11 electrifying events across Tech, Design, and Fun.',
   organization: 'IEEE GCET Student Branch',
   year: 2026,
-  eventCount: 12,
+  eventCount: 11,
   categoryCount: 3,
   participantCount: '500+',
   prizePool: '₹70K+',

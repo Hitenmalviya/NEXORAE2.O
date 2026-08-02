@@ -254,12 +254,12 @@ export default function Events() {
           <div className="max-w-[1400px] mx-auto">
             {/* Hero Section */}
             <div className="relative mb-10 sm:mb-16 pb-6 sm:pb-8 border-b border-white/10 overflow-hidden">
-              {/* Oversized Background Number "12" */}
+              {/* Oversized Background Number "11" */}
               <div
                 className="absolute -top-6 sm:-top-20 left-0 text-[8rem] xs:text-[12rem] sm:text-[18rem] md:text-[22rem] font-black text-white/[0.03] font-mono leading-none select-none pointer-events-none"
                 aria-hidden="true"
               >
-                12
+                11
               </div>
 
               <div className="relative z-10 max-w-3xl">
@@ -294,7 +294,7 @@ export default function Events() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="font-mono text-[11px] sm:text-sm tracking-[0.15em] sm:tracking-[0.25em] text-zinc-400 uppercase font-light leading-relaxed max-w-lg"
                 >
-                  12 challenges. 1 dimension. No way back.
+                  11 challenges. 1 dimension. No way back.
                 </motion.p>
               </div>
 
@@ -302,7 +302,7 @@ export default function Events() {
               <div className="mt-6 sm:mt-10 pt-4 sm:pt-6 border-t border-white/10 flex items-center justify-between gap-2 sm:gap-4 font-mono text-[9px] sm:text-[10px] text-zinc-400 uppercase tracking-widest">
                 <div className="flex items-center gap-2">
                   <span className="text-red-500 font-bold">SYSTEM LOG:</span>
-                  <span>12 ACTIVE ARENAS DETECTED</span>
+                  <span>11 ACTIVE ARENAS DETECTED</span>
                 </div>
               </div>
             </div>

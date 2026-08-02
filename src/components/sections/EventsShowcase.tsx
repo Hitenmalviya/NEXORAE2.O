@@ -50,7 +50,7 @@ export default function EventsShowcase() {
         </div>
 
         <p className="text-zinc-300 text-[10px] sm:text-xs md:text-sm tracking-wider sm:tracking-[0.2em] uppercase font-light max-w-xl mx-auto mb-6 sm:mb-8 drop-shadow px-2 break-words">
-          12 ARENAS • COUNTLESS POSSIBILITIES • CHOOSE WISELY
+          11 ARENAS • COUNTLESS POSSIBILITIES • CHOOSE WISELY
         </p>
 
         {/* Category Filter Tabs with Horizontal Scroll on Mobile */}

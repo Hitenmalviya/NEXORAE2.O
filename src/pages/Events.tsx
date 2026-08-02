@@ -2,7 +2,6 @@ import { useEffect, useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EVENTS, EVENT_CATEGORIES } from '@/data/events';
 import type { Event } from '@/types';
-import { eventsApi } from '@/api/events';
 import { GOOGLE_FORM_URL } from '@/utils/constants';
 
 const categoryBadges: Record<string, { label: string; tag: string; border: string; glow: string }> = {
@@ -169,31 +168,11 @@ function ClassifiedEventCard({
 }
 
 export default function Events() {
-  const [apiEvents, setApiEvents] = useState<any[]>(EVENTS as any);
-  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   useEffect(() => {
     document.title = 'Classified Arenas | NEXORAE 2.0';
-    fetchEvents();
   }, []);
-
-  const fetchEvents = async () => {
-    try {
-      setLoading(true);
-      const response = await eventsApi.getAll();
-      if (response.data && response.data.data && Array.isArray(response.data.data)) {
-        setApiEvents(response.data.data);
-      } else {
-        setApiEvents(EVENTS);
-      }
-    } catch (err) {
-      console.error('Failed to fetch events from API, falling back to static data', err);
-      setApiEvents(EVENTS);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleRegisterClick = (_event: Event) => {
     window.open(GOOGLE_FORM_URL, '_blank', 'noopener,noreferrer');
@@ -201,9 +180,9 @@ export default function Events() {
 
   const filteredEvents = useMemo(() => {
     return activeCategory === 'all'
-      ? apiEvents
-      : apiEvents.filter((e) => e.category === activeCategory);
-  }, [apiEvents, activeCategory]);
+      ? EVENTS
+      : EVENTS.filter((e) => e.category === activeCategory);
+  }, [activeCategory]);
 
   return (
     <>

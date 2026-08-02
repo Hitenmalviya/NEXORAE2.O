@@ -72,18 +72,21 @@ export default function Footer() {
         </div>
 
         {/* Brand Logo */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 flex flex-col items-center justify-center">
           <Link
             to="/"
-            className="inline-block font-display font-bold text-2xl sm:text-3xl tracking-[0.15em] uppercase stranger-things-title"
+            className="inline-flex items-center gap-3 font-display font-bold text-2xl sm:text-3xl tracking-[0.15em] uppercase stranger-things-title group"
             onMouseEnter={() => document.body.classList.add('cursor-hover')}
             onMouseLeave={() => document.body.classList.remove('cursor-hover')}
           >
+            <img
+              src="/images/v1.png"
+              alt="NEXORAE 2.0 Emblem"
+              className="h-12 sm:h-16 w-auto object-contain filter drop-shadow-[0_0_20px_rgba(220,38,38,0.8)] group-hover:scale-105 transition-transform duration-300"
+            />
             <span className="inline-flex items-baseline">
               <span className="text-[1.2em]">N</span>EXORA<span className="text-[1.2em]">E</span>
-            </span>
-            <span className="text-sm font-mono text-glow-bright tracking-normal ml-1">
-              2.0
+              <span className="text-sm font-mono text-glow-bright tracking-normal ml-1.5">2.0</span>
             </span>
           </Link>
         </div>

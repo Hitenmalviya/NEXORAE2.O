@@ -191,19 +191,25 @@ export default function Timeline() {
   const filteredTimeline = useMemo(() => TIMELINE_DATA, []);
 
   useEffect(() => {
+    document.title = 'Event Timeline | NEXORAE 2.0';
+
     // GSAP ScrollTrigger for vertical progress line illumination
     const ctx = gsap.context(() => {
       if (lineProgressRef.current && containerRef.current) {
-        gsap.to(lineProgressRef.current, {
-          height: '100%',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 60%',
-            end: 'bottom 80%',
-            scrub: true,
-          },
-        });
+        gsap.fromTo(
+          lineProgressRef.current,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top 30%',
+              end: 'bottom 80%',
+              scrub: 0.3,
+            },
+          }
+        );
       }
     }, containerRef);
 
@@ -211,10 +217,14 @@ export default function Timeline() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-void pt-28 sm:pt-36 pb-20 sm:pb-32 overflow-hidden select-none">
-      {/* Background Ambience */}
+    <div className="relative min-h-screen bg-void pt-28 sm:pt-36 pb-20 sm:pb-32 overflow-hidden select-none" id="timeline-page">
+      {/* Stranger Things Atmospheric Background Image Layer */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-glow/5 rounded-full blur-[140px]" />
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-85 filter brightness-90 contrast-105"
+          style={{ backgroundImage: 'url("/timeline-bg.jpg")' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-void/80 via-void/50 to-void/90" />
         <div className="vignette absolute inset-0" />
       </div>
 
@@ -232,13 +242,22 @@ export default function Timeline() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-wider text-white mb-4 sm:mb-6"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-black text-[clamp(2.2rem,8vw,5.5rem)] uppercase tracking-[0.06em] leading-[0.95] mb-4 sm:mb-6 select-none"
+            style={{
+              fontFamily: "'ITC Benguiat', 'Cinzel Decorative', 'Playfair Display', serif",
+            }}
           >
-            EVENT <br className="sm:hidden" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-glow via-red-400 to-white">
+            <span className="text-white drop-shadow-md">EVENT </span>
+            <span
+              className="text-glow-bright"
+              style={{
+                WebkitTextStroke: '1.5px #dc2626',
+                textShadow: '0 0 30px #dc2626, 0 0 70px rgba(220,38,38,0.7), 0 0 110px rgba(220,38,38,0.3)',
+              }}
+            >
               TIMELINE
             </span>
           </motion.h1>

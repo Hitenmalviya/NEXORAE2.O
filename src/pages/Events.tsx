@@ -317,25 +317,17 @@ export default function Events() {
             </motion.div>
 
             {/* Event Cards Grid */}
-            {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className="h-72 rounded-lg bg-zinc-900/40 border border-white/5 animate-pulse" />
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredEvents.map((event, i) => (
-                  <ClassifiedEventCard
-                    key={event._id || event.id}
-                    event={event}
-                    index={i}
-                    isFeatured={i === 0 && activeCategory === 'all'}
-                    onRegister={handleRegisterClick}
-                  />
-                ))}
-              </div>
-            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredEvents.map((event, i) => (
+                <ClassifiedEventCard
+                  key={event.id}
+                  event={event}
+                  index={i}
+                  isFeatured={i === 0 && activeCategory === 'all'}
+                  onRegister={handleRegisterClick}
+                />
+              ))}
+            </div>
           </div>
         </section>
       </motion.main>

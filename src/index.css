@@ -480,10 +480,11 @@
 
 .st-logo-img {
   width: 100%;
-  max-width: 440px;
+  max-width: 760px;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 35px rgba(220, 38, 38, 0.85));
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 35px rgba(220, 38, 38, 0.75));
 }
 
 .st-buttons-container {

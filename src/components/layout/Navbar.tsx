@@ -56,15 +56,18 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             to="/"
-            className="relative z-[51] flex items-center group py-1"
+            className="relative z-[51] flex items-center gap-2.5 group py-1"
             onMouseEnter={() => document.body.classList.add('cursor-hover')}
             onMouseLeave={() => document.body.classList.remove('cursor-hover')}
           >
             <img
               src="/images/v1.png"
-              alt="NEXORAE 2.0 Logo"
-              className="h-10 sm:h-12 md:h-14 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.8)] group-hover:scale-105 transition-transform duration-300"
+              alt="NEXORAE 2.0 Emblem"
+              className="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300"
             />
+            <span className="font-bold text-sm sm:text-base uppercase tracking-[0.1em] stranger-things-title hidden xs:inline-block">
+              NEXORA<span className="text-glow">E</span> <span className="text-xs font-mono text-glow-bright ml-0.5">2.0</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

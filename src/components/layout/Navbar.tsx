@@ -61,12 +61,12 @@ export default function Navbar() {
             onMouseLeave={() => document.body.classList.remove('cursor-hover')}
           >
             <img
-              src="/images/v1.png"
+              src="/images/ll.png"
               alt="NEXORAE 2.0 Emblem"
               className="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300"
             />
             <span className="font-bold text-sm sm:text-base uppercase tracking-[0.1em] stranger-things-title hidden xs:inline-block">
-              NEXORA<span className="text-glow">E</span> <span className="text-xs font-mono text-glow-bright ml-0.5">2.0</span>
+              NEXORAE<span className="text-glow">E</span> <span className="text-xs font-mono text-glow-bright ml-0.5">2.0</span>
             </span>
           </Link>
 
@@ -95,7 +95,7 @@ export default function Navbar() {
 
           {/* Register CTA */}
           <a
-            href={GOOGLE_FORM_URL}
+            href="https://forms.gle/k81miQEECdH54Yra9"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:flex items-center gap-2 px-5 py-2 text-[10px] uppercase tracking-[0.2em] border border-glow/30 text-glow hover:bg-glow hover:text-white transition-all duration-300 rounded-sm"

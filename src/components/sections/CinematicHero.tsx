@@ -152,7 +152,7 @@ export default function CinematicHero() {
             </motion.button>
 
             <motion.a
-              href={GOOGLE_FORM_URL}
+              href="https://forms.gle/k81miQEECdH54Yra9"
               target="_blank"
               rel="noopener noreferrer"
               className="st-btn-secondary group relative overflow-hidden font-mono"

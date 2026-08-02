@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion, type Variants } from 'framer-motion';
+import { GOOGLE_FORM_URL } from '@/utils/constants';
 import FogEffect from '@/components/ui/FogEffect';
 
 export default function CinematicHero() {
@@ -151,7 +152,9 @@ export default function CinematicHero() {
             </motion.button>
 
             <motion.a
-              href="/register"
+              href={GOOGLE_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="st-btn-secondary group relative overflow-hidden font-mono"
               variants={item}
               whileHover={{ scale: 1.04 }}

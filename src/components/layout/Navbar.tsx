@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
 import { NAV_LINKS } from '@/data/navigation';
+import { GOOGLE_FORM_URL } from '@/utils/constants';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -92,14 +92,16 @@ export default function Navbar() {
           </ul>
 
           {/* Register CTA */}
-          <Link
-            to="/register"
+          <a
+            href={GOOGLE_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:flex items-center gap-2 px-5 py-2 text-[10px] uppercase tracking-[0.2em] border border-glow/30 text-glow hover:bg-glow hover:text-white transition-all duration-300 rounded-sm"
             onMouseEnter={() => document.body.classList.add('cursor-hover')}
             onMouseLeave={() => document.body.classList.remove('cursor-hover')}
           >
             Register
-          </Link>
+          </a>
 
           {/* Mobile Hamburger */}
           <button
@@ -174,12 +176,14 @@ export default function Navbar() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                <Link
-                  to="/register"
+                <a
+                  href={GOOGLE_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block px-6 py-3 text-xs uppercase tracking-[0.2em] border border-glow text-glow hover:bg-glow hover:text-white transition-all duration-300"
                 >
                   Register Now
-                </Link>
+                </a>
               </motion.div>
             </motion.div>
           </>

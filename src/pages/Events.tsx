@@ -2,8 +2,8 @@ import { useEffect, useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EVENTS, EVENT_CATEGORIES } from '@/data/events';
 import type { Event } from '@/types';
-import EventRegModal from '@/components/registration/EventRegModal';
 import { eventsApi } from '@/api/events';
+import { GOOGLE_FORM_URL } from '@/utils/constants';
 
 const categoryBadges: Record<string, { label: string; tag: string; border: string; glow: string }> = {
   tech: {
@@ -172,8 +172,6 @@ export default function Events() {
   const [apiEvents, setApiEvents] = useState<any[]>(EVENTS as any);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<string>('all');
-  const [selectedEvent, setSelectedEvent] = useState<any>(null);
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     document.title = 'Classified Arenas | NEXORAE 2.0';
@@ -197,9 +195,8 @@ export default function Events() {
     }
   };
 
-  const handleRegisterClick = (event: Event) => {
-    setSelectedEvent(event);
-    setShowModal(true);
+  const handleRegisterClick = (_event: Event) => {
+    window.open(GOOGLE_FORM_URL, '_blank', 'noopener,noreferrer');
   };
 
   const filteredEvents = useMemo(() => {
@@ -363,13 +360,6 @@ export default function Events() {
           </div>
         </section>
       </motion.main>
-
-      {/* Registration Modal */}
-      <AnimatePresence>
-        {showModal && selectedEvent && (
-          <EventRegModal event={selectedEvent} onClose={() => setShowModal(false)} />
-        )}
-      </AnimatePresence>
     </>
   );
 }

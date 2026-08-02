@@ -12,6 +12,8 @@ export const SITE_CONFIG = {
   venue: 'GCET, Vallabh Vidyanagar',
 } as const;
 
+export const GOOGLE_FORM_URL = 'https://forms.google.com';
+
 export const BREAKPOINTS = {
   sm: 640,
   md: 768,

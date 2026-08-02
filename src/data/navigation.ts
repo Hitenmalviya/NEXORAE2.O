@@ -5,7 +5,6 @@ export const NAV_LINKS: NavLink[] = [
   { label: 'Events', href: '/events', isRoute: true },
   { label: 'About', href: '/#about' },
   { label: 'Timeline', href: '/timeline', isRoute: true },
-  { label: 'My Nexorae', href: '/dashboard', isRoute: true },
 ];
 
 export const SOCIAL_LINKS = [

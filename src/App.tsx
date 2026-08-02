@@ -15,10 +15,8 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = lazy(() => import('@/pages/Home'));
 const Events = lazy(() => import('@/pages/Events'));
 const Timeline = lazy(() => import('@/pages/Timeline'));
-const Register = lazy(() => import('@/pages/Register'));
 const Contact = lazy(() => import('@/pages/Contact'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
-const Dashboard = lazy(() => import('@/pages/Dashboard'));
 
 const AdminLogin = lazy(() => import('@/pages/admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('@/pages/admin/AdminDashboard'));
@@ -70,8 +68,8 @@ function AnimatedRoutes() {
           <Route path="/about" element={<Navigate to="/#about" replace />} />
           <Route path="/events" element={<Events />} />
           <Route path="/timeline" element={<Timeline />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/register" element={<Navigate to="/events" replace />} />
+          <Route path="/dashboard" element={<Navigate to="/events" replace />} />
           <Route path="/contact" element={<Contact />} />
           
           <Route path="/admin/login" element={<AdminLogin />} />

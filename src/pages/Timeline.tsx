@@ -78,7 +78,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'CS & SPS',
     description: 'A logic-based treasure hunt with puzzles, clues, and campus challenges. Decode, explore, and sprint across campus.',
     venue: 'Audi',
-    poster: '/posters/Frame 48.png',
+    poster: '/posters/Frame 47.png',
     status: 'upcoming',
   },
   {
@@ -118,7 +118,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'RAS',
     description: 'Engineering drop challenge by building protective shields to save raw egg payloads from multi-floor drops.',
     venue: 'Parking and ground',
-    poster: '/posters/Frame 45.png',
+    poster: '/posters/Frame 43.png',
     status: 'upcoming',
   },
   {
@@ -144,7 +144,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'SIGHT',
     description: 'A perfect blend of brains, strength, and physical endurance. Solve challenges and power through obstacles.',
     venue: 'Front lawn',
-    poster: '/posters/Frame 47.png',
+    poster: '/posters/Frame 44.png',
     status: 'upcoming',
   },
   {
@@ -171,7 +171,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'IASPES',
     description: 'A thrilling game of trust, strategy, and deception. Complete missions, expose hidden Traitors and outsmart opponents.',
     venue: 'Audi',
-    poster: '/posters/Frame 44.png',
+    poster: '/posters/Frame 45.png',
     status: 'upcoming',
   },
   {

@@ -1,9 +1,5 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export interface TimelineItem {
   id: string;
@@ -233,8 +229,6 @@ const DAY_OPTIONS = [
 ];
 
 export default function Timeline() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const lineProgressRef = useRef<HTMLDivElement>(null);
   const [selectedDay, setSelectedDay] = useState<string>('ALL');
 
   // Filter items by active Day tab
@@ -245,29 +239,7 @@ export default function Timeline() {
 
   useEffect(() => {
     document.title = 'Event Schedule & Timeline | NEXORAE 2.0';
-
-    // GSAP ScrollTrigger for vertical progress line illumination
-    const ctx = gsap.context(() => {
-      if (lineProgressRef.current && containerRef.current) {
-        gsap.fromTo(
-          lineProgressRef.current,
-          { scaleY: 0 },
-          {
-            scaleY: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: 'top 30%',
-              end: 'bottom 80%',
-              scrub: 0.3,
-            },
-          }
-        );
-      }
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, [selectedDay]);
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-void pt-28 sm:pt-36 pb-20 sm:pb-32 overflow-hidden select-none" id="timeline-page">
@@ -281,7 +253,7 @@ export default function Timeline() {
         <div className="vignette absolute inset-0" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6" ref={containerRef}>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         {/* Page Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <motion.div
@@ -361,10 +333,9 @@ export default function Timeline() {
         <div className="relative my-6 sm:my-10">
           {/* Vertical Timeline Axis Line (Desktop: Center 50%, Mobile: Left 24px) */}
           <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-4 bottom-4 w-[2px] bg-white/10 rounded-full">
-            {/* Illuminated Red Progress Line */}
+            {/* Illuminated Red Line */}
             <div
-              ref={lineProgressRef}
-              className="w-full h-full bg-gradient-to-b from-glow via-glow-bright to-glow shadow-[0_0_15px_#dc2626] origin-top scale-y-0"
+              className="w-full h-full bg-gradient-to-b from-glow via-glow-bright to-glow shadow-[0_0_15px_#dc2626]"
             />
           </div>
 
@@ -372,22 +343,18 @@ export default function Timeline() {
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedDay}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
               className="space-y-8 sm:space-y-16"
             >
               {filteredTimeline.map((item, index) => {
                 const isLeft = index % 2 === 0;
 
                 return (
-                  <motion.div
+                  <div
                     key={item.id}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-50px' }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     className={`relative flex items-center ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                       }`}
                   >
@@ -463,7 +430,7 @@ export default function Timeline() {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </motion.div>

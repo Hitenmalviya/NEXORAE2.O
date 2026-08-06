@@ -1,5 +1,5 @@
-import { useEffect, useRef, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -7,171 +7,213 @@ gsap.registerPlugin(ScrollTrigger);
 
 export interface TimelineItem {
   id: string;
-  phase: string;
+  day: 'Day 1' | 'Day 2' | 'Day 3';
+  date: string;
   time: string;
   title: string;
+  organizer?: string;
   category: 'Registration' | 'Tech' | 'Design' | 'Fun';
   description: string;
   venue?: string;
-  prize?: string;
   status: 'completed' | 'current' | 'upcoming';
 }
 
 const TIMELINE_DATA: TimelineItem[] = [
-  // PHASE 1: Portal Opening
+  // DAY 1: 15 SEPTEMBER
   {
     id: 't-1',
-    phase: 'PHASE 1',
-    time: 'Pre-Event Phase',
-    title: 'Registration & Identity Creation',
+    day: 'Day 1',
+    date: '15 September',
+    time: '10:00 to 11:00',
+    title: 'Inauguration',
     category: 'Registration',
-    description: 'Online registration goes live. Claim your unique NEXORAE ID and lock in IEEE member discounts.',
-    venue: 'nexorae.in/register',
-    status: 'completed',
+    organizer: 'NEXORAE Core',
+    description: 'Official opening ceremony of NEXORAE 2.0. Unveiling the portal, keynotes, and grand festival kickoff.',
+    venue: 'Main Auditorium',
+    status: 'upcoming',
   },
   {
     id: 't-2',
-    phase: 'PHASE 1',
-    time: 'Pre-Event Phase',
-    title: 'Preparatory Bootcamps & Briefings',
-    category: 'Registration',
-    description: 'Exclusive strategy and tech prep sessions for registered participants across competitive coding and design.',
-    venue: 'Online Stream & GCET Labs',
-    status: 'current',
+    day: 'Day 1',
+    date: '15 September',
+    time: '11:00 to 12:30',
+    title: "Mind Flayer's Maze",
+    category: 'Tech',
+    organizer: 'RAS',
+    description: 'Build an autonomous robot and navigate a maze filled with twists, turns, and unexpected challenges.',
+    venue: 'Foyer',
+    status: 'upcoming',
   },
-  // DAY 1: Tech & Innovation
   {
     id: 't-3',
-    phase: 'DAY 1',
-    time: '10:00 AM · Tech Event 01',
-    title: 'Code Red: Hunt, Hack & Fix',
-    category: 'Tech',
-    description: 'Put your coding skills to the test through technical quizzes, debugging rounds, and a thrilling finale on CodeChef. Every bug is a clue! Think fast, code faster, and rise to the top.',
-    venue: 'Lab 101, Computer Dept.',
-    prize: '₹10,000 Prize Pool',
+    day: 'Day 1',
+    date: '15 September',
+    time: '11:00 to 1:00',
+    title: "Founder's Circle",
+    category: 'Design',
+    organizer: 'WIE',
+    description: 'Hear directly from founders as they discuss entrepreneurship, innovation, and the realities of building a startup.',
+    venue: 'Audi',
     status: 'upcoming',
   },
   {
     id: 't-4',
-    phase: 'DAY 1',
-    time: '12:00 PM · Tech Event 02',
-    title: 'Egg Shield',
-    category: 'Tech',
-    description: 'Take on the ultimate engineering challenge by building a protective shield using the given materials to save your raw egg from drops off the 1st, 2nd, and 3rd floors!',
-    venue: 'Quadrangle / Main Courtyard',
-    prize: '₹5,000 Prize Pool',
+    day: 'Day 1',
+    date: '15 September',
+    time: '2:00 to 4:30',
+    title: 'Hawkins Havoc',
+    category: 'Fun',
+    organizer: 'IASPES',
+    description: 'Take on fun mini-games while Chaos Cards introduce twists like blindfolds, no talking, or reversed instructions.',
+    venue: 'Seminar',
     status: 'upcoming',
   },
   {
     id: 't-5',
-    phase: 'DAY 1',
-    time: '02:00 PM · Tech Event 03',
-    title: "The Mind Flayer's Maze (RoboTrack)",
-    category: 'Tech',
-    description: 'Build an autonomous robot and navigate a maze filled with twists, turns, and unexpected challenges. Precision, speed, and smart programming will lead you to victory.',
-    venue: 'Robotics Arena, EC Dept.',
-    prize: '₹10,000 Prize Pool',
+    day: 'Day 1',
+    date: '15 September',
+    time: '2:00 to 5:00',
+    title: 'The Upside Down',
+    category: 'Fun',
+    organizer: 'CS & SPS',
+    description: 'A logic-based treasure hunt with puzzles, clues, and campus challenges. Decode, explore, and sprint across campus.',
+    venue: 'Audi',
     status: 'upcoming',
   },
   {
     id: 't-6',
-    phase: 'DAY 1',
-    time: '04:00 PM · Innovation Talk',
-    title: "Founder's Circle: where idea meets reality",
-    category: 'Design',
-    description: 'Hear directly from founders as they discuss entrepreneurship, innovation, and the realities of building a startup. Gain practical insights, ask questions, and learn from the journeys behind successful ventures.',
-    venue: 'Auditorium Hall A',
-    prize: '₹5,000 Prize Pool',
+    day: 'Day 1',
+    date: '15 September',
+    time: '5:00 to 8:00',
+    title: 'Street Lit',
+    category: 'Fun',
+    organizer: 'Cultural Society',
+    description: 'Electrifying street performances, live musical showcases, dance battles, and high-energy cultural vibes.',
+    venue: 'Open Amphitheatre',
     status: 'upcoming',
   },
-  // DAY 2: Media, Clues & Strategy
+
+  // DAY 2: 16 SEPTEMBER
   {
     id: 't-7',
-    phase: 'DAY 2',
-    time: '10:00 AM · Design Event 01',
-    title: 'The Transmission: Every Frame tells a story (pitch verse)',
-    category: 'Design',
-    description: 'Creative Pitch Reel Challenge blends storytelling with innovation in an exciting showcase. Create compelling reels that captivate audiences, communicate impactful ideas, and leave a lasting impression.',
-    venue: 'Media Studio / Seminar Hall',
-    prize: '₹6,000 Prize Pool',
+    day: 'Day 2',
+    date: '16 September',
+    time: '10:00 to 1:00',
+    title: 'Code Red',
+    category: 'Tech',
+    organizer: 'CS',
+    description: 'Put your coding skills to the test through technical quizzes, debugging rounds, and competitive programming.',
+    venue: 'Seminar',
     status: 'upcoming',
   },
   {
     id: 't-8',
-    phase: 'DAY 2',
-    time: '12:00 PM · Campus Hunt',
-    title: 'The Upside Down: The Final Portal',
-    category: 'Fun',
-    description: 'A logic-based treasure hunt with puzzles, clues, and campus challenges. Decode, explore, and sprint across campus. Team up to uncover the Final Portal!',
-    venue: 'Campus Grounds',
-    prize: '₹8,000 Prize Pool',
+    day: 'Day 2',
+    date: '16 September',
+    time: '10:00 to 1:00',
+    title: 'Operation: Fragile Gate',
+    category: 'Tech',
+    organizer: 'RAS',
+    description: 'Engineering drop challenge by building protective shields to save raw egg payloads from multi-floor drops.',
+    venue: 'Parking and ground',
     status: 'upcoming',
   },
   {
     id: 't-9',
-    phase: 'DAY 2',
-    time: '02:30 PM · Strategy Game',
-    title: 'The Traitors: System Breach Edition',
+    day: 'Day 2',
+    date: '16 September',
+    time: '2:00 to 5:00',
+    title: 'Demogrounds',
     category: 'Fun',
-    description: 'System Breach Edition is a thrilling game of trust, strategy, and deception. Complete missions, expose the hidden Traitors and outsmart your opponents before the final system breach.',
-    venue: 'Seminar Hall B',
-    prize: '₹7,000 Prize Pool',
+    organizer: 'SPS',
+    description: 'Battle across a high-intensity esports league, earning points through eliminations and placement matches.',
+    venue: 'Labs',
     status: 'upcoming',
   },
   {
     id: 't-10',
-    phase: 'DAY 2',
-    time: '04:30 PM · Mystery Quest',
-    title: 'Escape room',
+    day: 'Day 2',
+    date: '16 September',
+    time: '2:00 to 5:00',
+    title: 'Mind and Muscle',
     category: 'Fun',
-    description: 'Follow the clues, solve mind-bending puzzles, and overcome each stage of this immersive adventure. Combine logic, speed and teamwork to outsmart the challenge and escape before time runs out.',
-    venue: 'Block C Labs',
-    prize: '₹5,000 Prize Pool',
+    organizer: 'SIGHT',
+    description: 'A perfect blend of brains, strength, and physical endurance. Solve challenges and power through obstacles.',
+    venue: 'Front lawn',
     status: 'upcoming',
   },
-  // DAY 3: Chaos, Esports & Grand Finale
   {
     id: 't-11',
-    phase: 'DAY 3',
-    time: '10:00 AM · Chaos Arena',
-    title: 'Hawkins Havoc',
+    day: 'Day 2',
+    date: '16 September',
+    time: '5:00 to 8:00',
+    title: 'Cultural Night',
     category: 'Fun',
-    description: 'Take on fun mini-games while Chaos Cards introduce twists like blindfolds, no talking, or reversed instructions. Adapt fast, work as a team, and conquer the chaos!',
-    venue: 'Open Amphitheatre',
-    prize: '₹4,000 Prize Pool',
+    organizer: 'Cultural Society',
+    description: 'An unforgettable evening of stage acts, music, dance performances, and star entertainment.',
+    venue: 'Main Stage',
     status: 'upcoming',
   },
+
+  // DAY 3: 17 SEPTEMBER
   {
     id: 't-12',
-    phase: 'DAY 3',
-    time: '11:30 AM · Esports League',
-    title: 'DemoGrounds (Battleground)',
+    day: 'Day 3',
+    date: '17 September',
+    time: '10:00 to 1:00',
+    title: 'The Traitors',
     category: 'Fun',
-    description: 'Battle across a multi-day BGMI league, earning points through eliminations and match placements to qualify for the Grand Finale!',
-    venue: 'Gaming Zone / Main Stage',
-    prize: '₹8,000 Prize Pool',
+    organizer: 'IASPES',
+    description: 'A thrilling game of trust, strategy, and deception. Complete missions, expose hidden Traitors and outsmart opponents.',
+    venue: 'Audi',
     status: 'upcoming',
   },
   {
     id: 't-13',
-    phase: 'DAY 3',
-    time: '02:00 PM · Physical & Mental Challenge',
-    title: 'Mind & Muscle',
+    day: 'Day 3',
+    date: '17 September',
+    time: '10:00 to 1:00',
+    title: 'Demogrounds',
     category: 'Fun',
-    description: 'A perfect blend of brains, strength, and teamwork. Solve challenges, power through obstacles, and prove you have what it takes to conquer both mind and muscle.',
-    venue: 'Sports Complex Grounds',
-    prize: '₹5,000 Prize Pool',
+    organizer: 'SPS',
+    description: 'The final esports battleground stage where qualifying top teams compete for the ultimate championship title.',
+    venue: 'Labs',
     status: 'upcoming',
   },
   {
     id: 't-14',
-    phase: 'FINALE',
-    time: '05:00 PM · Grand Closing',
-    title: 'Valedictory & Prize Distribution',
-    category: 'Registration',
-    description: 'Celebration of champions, trophies, certificate handover, and official reveal for next season.',
-    venue: 'GCET Auditorium',
-    prize: '₹70K+ Total Distributed',
+    day: 'Day 3',
+    date: '17 September',
+    time: '11:30 to 1:00',
+    title: 'PitchFrame',
+    category: 'Design',
+    organizer: 'WIE',
+    description: 'Creative Pitch Reel Challenge blending visual storytelling with innovation in an exciting showcase.',
+    venue: 'Seminar',
+    status: 'upcoming',
+  },
+  {
+    id: 't-15',
+    day: 'Day 3',
+    date: '17 September',
+    time: '2:00 to 5:00',
+    title: 'Escape Room',
+    category: 'Fun',
+    organizer: 'SIGHT',
+    description: 'Follow clues, solve mind-bending puzzles, and combine logic, speed and teamwork to escape before time runs out.',
+    venue: 'A323 classroom',
+    status: 'upcoming',
+  },
+  {
+    id: 't-16',
+    day: 'Day 3',
+    date: '17 September',
+    time: '7:00 to 11:00',
+    title: 'Sahiyaro',
+    category: 'Fun',
+    organizer: 'NEXORAE Finale',
+    description: 'Grand finale Garba, DJ night & celebration bringing NEXORAE 2.0 to an unforgettable close.',
+    venue: 'Festival Grounds',
     status: 'upcoming',
   },
 ];
@@ -183,15 +225,26 @@ const categoryColors: Record<string, string> = {
   Fun: 'text-emerald-400 border-emerald-500/40 bg-emerald-500/10',
 };
 
+const DAY_OPTIONS = [
+  { id: 'ALL', label: 'All Days', date: '15-17 Sept' },
+  { id: 'Day 1', label: 'Day 1', date: '15 Sept' },
+  { id: 'Day 2', label: 'Day 2', date: '16 Sept' },
+  { id: 'Day 3', label: 'Day 3', date: '17 Sept' },
+];
+
 export default function Timeline() {
   const containerRef = useRef<HTMLDivElement>(null);
   const lineProgressRef = useRef<HTMLDivElement>(null);
+  const [selectedDay, setSelectedDay] = useState<string>('ALL');
 
-  // Filter items by active tab (All vs category)
-  const filteredTimeline = useMemo(() => TIMELINE_DATA, []);
+  // Filter items by active Day tab
+  const filteredTimeline = useMemo(() => {
+    if (selectedDay === 'ALL') return TIMELINE_DATA;
+    return TIMELINE_DATA.filter((item) => item.day === selectedDay);
+  }, [selectedDay]);
 
   useEffect(() => {
-    document.title = 'Event Timeline | NEXORAE 2.0';
+    document.title = 'Event Schedule & Timeline | NEXORAE 2.0';
 
     // GSAP ScrollTrigger for vertical progress line illumination
     const ctx = gsap.context(() => {
@@ -214,7 +267,7 @@ export default function Timeline() {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [selectedDay]);
 
   return (
     <div className="relative min-h-screen bg-void pt-28 sm:pt-36 pb-20 sm:pb-32 overflow-hidden select-none" id="timeline-page">
@@ -230,7 +283,7 @@ export default function Timeline() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6" ref={containerRef}>
         {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -238,7 +291,7 @@ export default function Timeline() {
             className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 rounded-full border border-glow/30 bg-glow/10 text-glow text-[10px] sm:text-xs tracking-[0.3em] uppercase font-mono mb-4 sm:mb-6"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-glow animate-pulse" />
-            OFFICIAL EVENT SCHEDULE
+            15 - 17 SEPTEMBER SCHEDULE
           </motion.div>
 
           <motion.h1
@@ -268,9 +321,41 @@ export default function Timeline() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xs sm:text-base text-muted tracking-[0.15em] uppercase font-light max-w-xl mx-auto px-2"
           >
-            Follow the journey from registration to the 11 electrifying events
+            16 Thrilling Events across 3 Days of Innovation, Strategy & Chaos
           </motion.p>
         </div>
+
+        {/* Day Selector Tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex justify-center items-center gap-2 sm:gap-4 mb-12 sm:mb-16 flex-wrap"
+        >
+          {DAY_OPTIONS.map((tab) => {
+            const isActive = selectedDay === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setSelectedDay(tab.id)}
+                className={`relative px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-mono text-xs sm:text-sm tracking-wider transition-all duration-300 flex flex-col items-center border ${isActive
+                  ? 'bg-glow/20 border-glow text-white shadow-[0_0_20px_rgba(220,38,38,0.4)]'
+                  : 'bg-surface/60 border-white/10 text-white/60 hover:text-white hover:border-white/30 hover:bg-surface'
+                  }`}
+              >
+                <span className="font-bold uppercase tracking-widest">{tab.label}</span>
+                <span className="text-[10px] text-muted tracking-normal mt-0.5">{tab.date}</span>
+                {isActive && (
+                  <motion.div
+                    layoutId="dayTabIndicator"
+                    className="absolute inset-0 rounded-xl border border-glow shadow-[inset_0_0_12px_rgba(220,38,38,0.3)] pointer-events-none"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </motion.div>
 
         {/* Timeline Axis & Cards Container */}
         <div className="relative my-6 sm:my-10">
@@ -284,100 +369,108 @@ export default function Timeline() {
           </div>
 
           {/* Timeline Items List */}
-          <div className="space-y-10 sm:space-y-20">
-            {TIMELINE_DATA.map((item, index) => {
-              const isLeft = index % 2 === 0;
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedDay}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-8 sm:space-y-16"
+            >
+              {filteredTimeline.map((item, index) => {
+                const isLeft = index % 2 === 0;
 
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className={`relative flex items-center ${
-                    isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
-                >
-                  {/* Timeline Central Node Marker (Mobile: Left 24px, Desktop: Center 50%) */}
-                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
-                    <div
-                      className={`w-5 h-5 rounded-full flex items-center justify-center transition-all duration-500 ${
-                        item.status === 'completed'
-                          ? 'bg-glow border-2 border-white shadow-[0_0_15px_#dc2626]'
-                          : item.status === 'current'
-                            ? 'bg-glow-bright border-2 border-glow shadow-[0_0_25px_#ef4444]'
-                            : 'bg-surface border border-white/30'
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className={`relative flex items-center ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                       }`}
-                    >
-                      <div
-                        className={`w-2 h-2 rounded-full ${
-                          item.status === 'upcoming' ? 'bg-white/40' : 'bg-white'
-                        }`}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Horizontal Branch Line connecting node to card on Mobile */}
-                  <div className="md:hidden absolute left-6 top-1/2 w-6 h-[1px] bg-gradient-to-r from-glow/60 to-white/10 -translate-y-1/2 pointer-events-none z-10" />
-
-                  {/* Card Container (Mobile: Full Width with Left Padding, Desktop: Alternating 46%) */}
-                  <div
-                    className={`w-full pl-14 sm:pl-16 md:pl-0 md:w-[46%] ${
-                      isLeft ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'
-                    }`}
                   >
-                    <div className="glass-strong p-5 sm:p-8 rounded-xl sm:rounded-2xl border border-white/10 hover:border-glow/40 transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,0.5)] group relative overflow-hidden">
-                      {/* Top Header Row */}
-                      <div
-                        className={`flex items-center gap-2 sm:gap-3 mb-3 flex-wrap ${
-                          isLeft ? 'md:justify-end' : 'md:justify-start'
-                        }`}
-                      >
-                        <span className="text-[10px] uppercase font-mono tracking-widest text-glow font-semibold">
-                          {item.phase}
-                        </span>
-                        <span className="text-white/20">•</span>
-                        <span className="text-[10px] font-mono tracking-wider text-muted">
-                          {item.time}
-                        </span>
-                        <span
-                          className={`ml-auto md:ml-0 px-2 sm:px-2.5 py-0.5 text-[8px] sm:text-[9px] uppercase tracking-widest font-mono rounded-full border ${categoryColors[item.category]}`}
-                        >
-                          {item.category}
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h3 className="font-display text-lg sm:text-2xl font-bold uppercase tracking-wider text-white group-hover:text-glow-bright transition-colors duration-300 mb-2 sm:mb-3">
-                        {item.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-muted text-xs sm:text-sm font-light leading-relaxed mb-4">
-                        {item.description}
-                      </p>
-
-                      {/* Footer Info Row */}
-                      <div
-                        className={`flex items-center gap-4 pt-3 border-t border-white/10 text-[10px] font-mono text-dim flex-wrap ${
-                          isLeft ? 'md:justify-end' : 'md:justify-start'
-                        }`}
-                      >
-                        {item.venue && (
-                          <span className="flex items-center gap-1 text-white/70">
-                            📍 {item.venue}
-                          </span>
-                        )}
+                    {/* Timeline Central Node Marker */}
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
+                      <div className="w-6 h-6 rounded-full bg-glow-bright border-2 border-glow shadow-[0_0_20px_#ef4444] flex items-center justify-center">
+                        <div className="w-2 h-2 rounded-full bg-white animate-ping" />
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+
+                    {/* Horizontal Branch Line connecting node on Mobile */}
+                    <div className="md:hidden absolute left-6 top-1/2 w-6 h-[1px] bg-gradient-to-r from-glow/60 to-white/10 -translate-y-1/2 pointer-events-none z-10" />
+
+                    {/* Card Container */}
+                    <div
+                      className={`w-full pl-14 sm:pl-16 md:pl-0 md:w-[46%] ${isLeft ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'
+                        }`}
+                    >
+                      <div className="glass-strong p-5 sm:p-7 rounded-xl sm:rounded-2xl border border-white/10 hover:border-glow/50 transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,0.6)] group relative overflow-hidden">
+                        {/* Glow accent corner on hover */}
+                        <div className="absolute -top-12 -right-12 w-24 h-24 bg-glow/10 rounded-full blur-xl group-hover:bg-glow/25 transition-all duration-500 pointer-events-none" />
+
+                        {/* Top Header Row */}
+                        <div
+                          className={`flex items-center gap-2 sm:gap-2.5 mb-3 flex-wrap ${isLeft ? 'md:justify-end' : 'md:justify-start'
+                            }`}
+                        >
+                          <span className="px-2 py-0.5 rounded bg-glow/20 border border-glow/30 text-[10px] font-mono tracking-wider text-glow-bright font-bold uppercase">
+                            {item.day} · {item.date}
+                          </span>
+
+                          <span className="text-[11px] font-mono tracking-wider text-white font-semibold px-2 py-0.5 rounded bg-white/5 border border-white/10">
+                            ⏰ {item.time}
+                          </span>
+
+                          <span
+                            className={`px-2 sm:px-2.5 py-0.5 text-[9px] uppercase tracking-widest font-mono rounded-full border ${categoryColors[item.category]}`}
+                          >
+                            {item.category}
+                          </span>
+                        </div>
+
+                        {/* Title & Organizer Tag */}
+                        <div className="mb-2 sm:mb-3">
+                          <h3 className="font-display text-lg sm:text-2xl font-bold uppercase tracking-wider text-white group-hover:text-glow-bright transition-colors duration-300">
+                            {item.title}
+                          </h3>
+                          {item.organizer && (
+                            <div
+                              className={`text-xs font-mono text-glow/90 mt-0.5 tracking-wider font-semibold ${isLeft ? 'md:text-right' : 'md:text-left'
+                                }`}
+                            >
+                              Organized by: <span className="text-white bg-white/10 px-1.5 py-0.5 rounded text-[11px]">{item.organizer}</span>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-muted text-xs sm:text-sm font-light leading-relaxed mb-4">
+                          {item.description}
+                        </p>
+
+                        {/* Footer Info Row */}
+                        <div
+                          className={`flex items-center gap-4 pt-3 border-t border-white/10 text-[11px] font-mono text-dim flex-wrap ${isLeft ? 'md:justify-end' : 'md:justify-start'
+                            }`}
+                        >
+                          {item.venue && (
+                            <span className="flex items-center gap-1 text-white/80 font-medium">
+                              📍 {item.venue}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </div>
   );
 }
+

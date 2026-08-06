@@ -14,7 +14,7 @@ export const EVENTS: Event[] = [
   },
   {
     id: 'founders-circle',
-    name: "Founder's Circle: where idea meets reality",
+    name: "Founder's Circle",
     category: 'design',
     difficulty: 'medium',
     prize: '₹5,000',
@@ -25,7 +25,7 @@ export const EVENTS: Event[] = [
   },
   {
     id: 'the-traitors',
-    name: 'The Traitors: System Breach Edition',
+    name: 'The Traitors',
     category: 'fun',
     difficulty: 'hard',
     prize: '₹7,000',
@@ -35,8 +35,8 @@ export const EVENTS: Event[] = [
     icon: '🕵️',
   },
   {
-    id: 'egg-shield',
-    name: 'Egg Shield',
+    id: 'operation-fragile-gate',
+    name: 'Operation :Fragile Gate',
     category: 'tech',
     difficulty: 'medium',
     prize: '₹5,000',
@@ -47,7 +47,7 @@ export const EVENTS: Event[] = [
   },
   {
     id: 'code-red',
-    name: 'Code Red: Hunt, Hack & Fix',
+    name: 'Code Red',
     category: 'tech',
     difficulty: 'hard',
     prize: '₹10,000',
@@ -58,7 +58,7 @@ export const EVENTS: Event[] = [
   },
   {
     id: 'escape-room',
-    name: 'Escape room',
+    name: 'Escape Room',
     category: 'fun',
     difficulty: 'medium',
     prize: '₹5,000',
@@ -79,8 +79,8 @@ export const EVENTS: Event[] = [
     icon: '🃏',
   },
   {
-    id: 'the-transmission',
-    name: 'The Transmission: Every Frame tells a story (pitch verse)',
+    id: 'pitchframe',
+    name: 'PitchFrame',
     category: 'design',
     difficulty: 'medium',
     prize: '₹6,000',
@@ -91,7 +91,7 @@ export const EVENTS: Event[] = [
   },
   {
     id: 'demogrounds',
-    name: 'DemoGrounds (Battleground)',
+    name: 'Demogrounds',
     category: 'fun',
     difficulty: 'hard',
     prize: '₹8,000',
@@ -102,7 +102,7 @@ export const EVENTS: Event[] = [
   },
   {
     id: 'mind-flayers-maze',
-    name: "The Mind Flayer's Maze (RoboTrack)",
+    name: "Mind Flayer's Maze",
     category: 'tech',
     difficulty: 'hard',
     prize: '₹10,000',
@@ -113,7 +113,7 @@ export const EVENTS: Event[] = [
   },
   {
     id: 'mind-and-muscle',
-    name: 'Mind & Muscle',
+    name: 'Mind and Muscle',
     category: 'fun',
     difficulty: 'medium',
     prize: '₹5,000',

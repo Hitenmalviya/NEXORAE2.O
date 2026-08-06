@@ -137,7 +137,7 @@ export default function CinematicHero() {
             variants={item}
             className="font-mono text-xs sm:text-sm md:text-base font-medium uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/90 text-center my-4 sm:my-5 drop-shadow-[0_0_15px_rgba(220,38,38,0.6)]"
           >
-            29–31 AUGUST 2026 • GCET, ANAND
+            15–17 SEPT 2026 • GCET, ANAND
           </motion.p>
 
           <div className="st-buttons-container">

@@ -25,11 +25,13 @@ export default function EventsShowcase() {
       description: event.description,
       icon: event.icon,
       team: event.team,
+      registrationUrl: event.registrationUrl,
     }));
   }, [filteredEvents]);
 
-  const handleRegisterClick = () => {
-    window.open(GOOGLE_FORM_URL, '_blank', 'noopener,noreferrer');
+  const handleRegisterClick = (item: CoverflowItem) => {
+    const url = item.registrationUrl || GOOGLE_FORM_URL;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (

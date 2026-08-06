@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import GhostCursor from '@/components/ui/GhostCursor';
 
-// Target Event Launch Date: Festival Kickoff (August 29, 2026 at 09:00:00 AM IST)
-const TARGET_DATE = new Date('2026-08-29T09:00:00+05:30').getTime();
+// Target Event Launch Date: Festival Kickoff (September 15, 2026 at 09:00:00 AM IST)
+const TARGET_DATE = new Date('2026-09-15T09:00:00+05:30').getTime();
 
 interface TimeLeft {
   days: number;

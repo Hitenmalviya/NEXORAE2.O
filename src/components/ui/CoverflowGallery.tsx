@@ -10,6 +10,7 @@ export interface CoverflowItem {
   description: string;
   icon?: string;
   team?: { min: number; max: number };
+  registrationUrl?: string;
 }
 
 interface CoverflowGalleryProps {

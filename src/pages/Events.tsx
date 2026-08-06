@@ -174,8 +174,9 @@ export default function Events() {
     document.title = 'Classified Arenas | NEXORAE 2.0';
   }, []);
 
-  const handleRegisterClick = (_event: Event) => {
-    window.open(GOOGLE_FORM_URL, '_blank', 'noopener,noreferrer');
+  const handleRegisterClick = (event: Event) => {
+    const url = event.registrationUrl || GOOGLE_FORM_URL;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const filteredEvents = useMemo(() => {

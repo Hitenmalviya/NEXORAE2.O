@@ -11,6 +11,7 @@ export const EVENTS: Event[] = [
     poster: '/posters/Frame 47.png',
     team: { min: 2, max: 4 },
     icon: '🌀',
+    registrationUrl: 'https://forms.gle/xgUTzZKfVt9KeoNC6',
   },
   {
     id: 'founders-circle',
@@ -22,6 +23,7 @@ export const EVENTS: Event[] = [
     poster: "/posters/Founder's Podcast Live.png",
     team: { min: 1, max: 2 },
     icon: '💡',
+    registrationUrl: 'https://forms.gle/jGZzbqPKJScmNkCS8',
   },
   {
     id: 'the-traitors',
@@ -33,6 +35,7 @@ export const EVENTS: Event[] = [
     poster: '/posters/Frame 45.png',
     team: { min: 2, max: 4 },
     icon: '🕵️',
+    registrationUrl: 'https://forms.gle/erAedpsXxYrZHBc48',
   },
   {
     id: 'operation-fragile-gate',
@@ -44,6 +47,7 @@ export const EVENTS: Event[] = [
     poster: '/posters/Frame 48.png',
     team: { min: 2, max: 3 },
     icon: '🥚',
+    registrationUrl: 'https://forms.gle/UgVEfSs7zb6ggGf47',
   },
   {
     id: 'code-red',
@@ -55,6 +59,7 @@ export const EVENTS: Event[] = [
     poster: '/posters/Code Red .png',
     team: { min: 1, max: 3 },
     icon: '🚨',
+    registrationUrl: 'https://forms.gle/5dNbYdRVU1ppSYtQ9',
   },
   {
     id: 'escape-room',
@@ -66,6 +71,7 @@ export const EVENTS: Event[] = [
     poster: '/posters/Frame 46.png',
     team: { min: 2, max: 4 },
     icon: '🗝️',
+    registrationUrl: 'https://forms.gle/k81miQEECdH54Yra9',
   },
   {
     id: 'hawkins-havoc',
@@ -77,6 +83,7 @@ export const EVENTS: Event[] = [
     poster: '/posters/Hawkins Havoc.png',
     team: { min: 2, max: 4 },
     icon: '🃏',
+    registrationUrl: 'https://forms.gle/TCEd4ZM2pqHV9jsA7',
   },
   {
     id: 'pitchframe',
@@ -88,6 +95,7 @@ export const EVENTS: Event[] = [
     poster: '/posters/PitchFrame.png',
     team: { min: 1, max: 3 },
     icon: '🎬',
+    registrationUrl: 'https://forms.gle/k81miQEECdH54Yra9',
   },
   {
     id: 'demogrounds',
@@ -99,6 +107,7 @@ export const EVENTS: Event[] = [
     poster: '/posters/Demogrounds.png',
     team: { min: 4, max: 4 },
     icon: '🎮',
+    registrationUrl: 'https://forms.gle/NPNkLAvFK6KNe16A8',
   },
   {
     id: 'mind-flayers-maze',
@@ -110,6 +119,7 @@ export const EVENTS: Event[] = [
     poster: "/posters/Mind Flayer's maze.png",
     team: { min: 2, max: 4 },
     icon: '🤖',
+    registrationUrl: 'https://forms.gle/yjScNa3tyvydBU5E6',
   },
   {
     id: 'mind-and-muscle',
@@ -121,6 +131,7 @@ export const EVENTS: Event[] = [
     poster: '/posters/Frame 43.png',
     team: { min: 2, max: 4 },
     icon: '💪',
+    registrationUrl: 'https://forms.gle/zZZmVNNCETnriawA6',
   },
 ];
 

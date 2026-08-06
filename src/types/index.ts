@@ -8,6 +8,7 @@ export interface Event {
   poster: string | null;
   team: { min: number; max: number };
   icon: string;
+  registrationUrl?: string;
 }
 
 export interface FAQItem {

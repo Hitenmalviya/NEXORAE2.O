@@ -8,7 +8,7 @@ export const EVENTS: Event[] = [
     difficulty: 'hard',
     prize: '₹8,000',
     description: 'A logic-based treasure hunt with puzzles, clues, and campus challenges. Decode, explore, and sprint across campus. Team up to uncover the Final Portal!',
-    poster: '/posters/Frame 43.png',
+    poster: '/posters/Frame 48.png',
     team: { min: 2, max: 4 },
     icon: '🌀',
   },

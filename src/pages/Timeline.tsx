@@ -78,7 +78,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'CS & SPS',
     description: 'A logic-based treasure hunt with puzzles, clues, and campus challenges. Decode, explore, and sprint across campus.',
     venue: 'Audi',
-    poster: '/posters/Frame 43.png',
+    poster: '/posters/Frame 48.png',
     status: 'upcoming',
   },
   {

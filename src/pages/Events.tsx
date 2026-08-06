@@ -136,17 +136,17 @@ function ClassifiedEventCard({
         </div>
 
         {/* Metadata Footer */}
-        <div className="pt-3 sm:pt-4 border-t border-white/[0.06] flex items-center justify-between gap-2 font-mono text-xs">
-          <div>
-            <span className="text-[8px] sm:text-[9px] uppercase tracking-widest text-zinc-500 block mb-0.5 sm:mb-1">Squad Size</span>
-            <span className="text-zinc-300 text-xs sm:text-sm font-bold">
-              {event.team
-                ? event.team.min === event.team.max
+        <div className="pt-3 sm:pt-4 border-t border-white/[0.06] flex items-center justify-between gap-2 font-mono text-xs min-h-[52px]">
+          {event.team && (
+            <div>
+              <span className="text-[8px] sm:text-[9px] uppercase tracking-widest text-zinc-500 block mb-0.5 sm:mb-1">Squad Size</span>
+              <span className="text-zinc-300 text-xs sm:text-sm font-bold">
+                {event.team.min === event.team.max
                   ? `${event.team.min} Operative`
-                  : `${event.team.min}-${event.team.max} Operatives`
-                : '1-4 Players'}
-            </span>
-          </div>
+                  : `${event.team.min}-${event.team.max} Operatives`}
+              </span>
+            </div>
+          )}
         </div>
       </div>
 

@@ -132,6 +132,41 @@ export default function CinematicHero() {
             />
           </motion.div>
 
+          {/* Tagline */}
+          <motion.p
+            variants={item}
+            className="font-mono text-xs sm:text-sm uppercase tracking-[0.35em] sm:tracking-[0.45em] text-red-400/90 font-medium my-3 sm:my-4 text-center drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]"
+          >
+            INNOVATION BEYOND HORIZONS
+          </motion.p>
+
+          {/* Premium Event Information Pill: Dates & Location */}
+          <motion.div
+            variants={item}
+            className="my-5 sm:my-7 inline-flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_30px_rgba(220,38,38,0.25)] text-center relative overflow-hidden group transition-all duration-500 hover:border-red-500/40 hover:shadow-[0_10px_50px_rgba(220,38,38,0.4)]"
+          >
+            {/* Top red glow accent */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-red-500/70 to-transparent" />
+
+            {/* Event Dates */}
+            <div className="flex items-center gap-2 font-mono text-xs sm:text-sm text-zinc-100 tracking-[0.2em] uppercase font-semibold">
+              <span className="text-red-500 text-sm animate-pulse">📅</span>
+              <span>29–31 AUGUST 2026</span>
+            </div>
+
+            {/* Thin Glowing Divider */}
+            <div className="hidden sm:block w-[1px] h-4 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
+            <div className="sm:hidden w-16 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+            {/* Location */}
+            <div className="flex items-center gap-2 font-mono text-xs sm:text-sm text-zinc-200 tracking-[0.18em] uppercase font-light">
+              <span className="text-red-400 text-sm">📍</span>
+              <span className="text-zinc-300 font-medium">
+                G.H. PATEL COLLEGE OF ENGINEERING &amp; TECHNOLOGY, ANAND
+              </span>
+            </div>
+          </motion.div>
+
           <div className="st-buttons-container">
             <motion.button
               className="st-btn group relative overflow-hidden font-mono"

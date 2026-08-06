@@ -69,7 +69,7 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
       />
 
       {/* 3D Coverflow Perspective Stage */}
-      <div className="relative w-full max-w-6xl h-[560px] sm:h-[620px] md:h-[660px] flex items-center justify-center [perspective:1200px]">
+      <div className="relative w-full max-w-6xl h-[510px] sm:h-[560px] md:h-[600px] flex items-center justify-center [perspective:1200px]">
         {items.map((item, index) => {
           // Circular offset calculation
           let diff = (index - activeIndex) % total;
@@ -140,29 +140,12 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
               <div className="relative z-20 p-5 sm:p-6 text-center flex flex-col justify-between">
                 <div>
                   {/* Event Title */}
-                  <h3 className="font-display text-lg sm:text-2xl font-bold uppercase tracking-wider text-white mb-3 line-clamp-1 drop-shadow-md">
+                  <h3 className="font-display text-lg sm:text-2xl font-bold uppercase tracking-wider text-white mb-2 line-clamp-1 drop-shadow-md">
                     {item.title}
                   </h3>
 
-                  {/* Floating Glass Metadata Chips */}
-                  <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-3 flex-wrap font-mono text-[9px] sm:text-[10px]">
-                    <span className="px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/15 text-red-400 backdrop-blur-md shadow-sm font-semibold">
-                      ⚡ {item.category.toUpperCase()}
-                    </span>
-
-                    {item.prize && (
-                      <span className="px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/15 text-amber-400 backdrop-blur-md shadow-sm font-semibold">
-                        🏆 {item.prize}
-                      </span>
-                    )}
-
-                    <span className="px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/15 text-zinc-300 backdrop-blur-md shadow-sm font-semibold">
-                      👥 {item.team ? `${item.team.min}-${item.team.max}` : '1-4'}
-                    </span>
-                  </div>
-
                   {/* Event Description */}
-                  <p className="text-zinc-300 text-xs font-light leading-relaxed mb-4 line-clamp-2">
+                  <p className="text-zinc-300 text-xs sm:text-sm font-light leading-relaxed mb-5 line-clamp-2">
                     {item.description}
                   </p>
                 </div>

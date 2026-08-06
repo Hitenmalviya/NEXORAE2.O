@@ -3,10 +3,10 @@ export interface Event {
   name: string;
   category: 'tech' | 'design' | 'fun';
   difficulty: 'easy' | 'medium' | 'hard';
-  prize: string;
+  prize?: string;
   description: string;
   poster: string | null;
-  team: { min: number; max: number };
+  team?: { min: number; max: number };
   icon: string;
   registrationUrl?: string;
 }

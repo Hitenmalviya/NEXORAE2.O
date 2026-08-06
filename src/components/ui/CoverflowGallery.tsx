@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
 
 export interface CoverflowItem {
   id: string;
@@ -19,33 +19,280 @@ interface CoverflowGalleryProps {
 }
 
 export function CoverflowGallery({ items, onRegister, className = '' }: CoverflowGalleryProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  // Continuous floating-point position (fractional index into items array)
+  const [position, setPosition] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const total = items.length;
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % total);
-  };
+  // Drag state refs (avoid re-renders during drag)
+  const dragState = useRef({
+    startX: 0,
+    startPosition: 0,
+    lastX: 0,
+    lastTime: 0,
+    velocity: 0,
+    isActive: false,
+    hasMoved: false,
+  });
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + total) % total);
-  };
+  // Animation frame ref for momentum
+  const momentumRaf = useRef<number>(0);
 
-  // Keyboard navigation
+  // Card width used for drag-to-index conversion
+  const getCardWidth = useCallback(() => {
+    return window.innerWidth < 640 ? 300 : 400;
+  }, []);
+
+  // Wrap position into [0, total) range
+  const wrapPosition = useCallback((pos: number): number => {
+    const wrapped = ((pos % total) + total) % total;
+    return wrapped;
+  }, [total]);
+
+  // Get the snapped (nearest integer) index
+  const getSnappedIndex = useCallback((pos: number): number => {
+    return Math.round(wrapPosition(pos));
+  }, [wrapPosition]);
+
+  // Animate to nearest card with spring-like easing
+  const snapToNearest = useCallback((fromPos: number, initialVelocity: number = 0) => {
+    cancelAnimationFrame(momentumRaf.current);
+
+    // Project forward based on velocity to determine target
+    const projection = fromPos + initialVelocity * 0.3;
+    const targetIndex = Math.round(projection);
+
+    let current = fromPos;
+    let velocity = initialVelocity;
+    const stiffness = 0.08;
+    const damping = 0.78;
+
+    const animate = () => {
+      const displacement = targetIndex - current;
+      const springForce = displacement * stiffness;
+      velocity = (velocity + springForce) * damping;
+      current += velocity;
+
+      // Settle when close enough
+      if (Math.abs(displacement) < 0.002 && Math.abs(velocity) < 0.001) {
+        setPosition(wrapPosition(targetIndex));
+        return;
+      }
+
+      setPosition(current);
+      momentumRaf.current = requestAnimationFrame(animate);
+    };
+
+    momentumRaf.current = requestAnimationFrame(animate);
+  }, [wrapPosition]);
+
+  // Navigate functions
+  const handleNext = useCallback(() => {
+    cancelAnimationFrame(momentumRaf.current);
+    const currentSnapped = getSnappedIndex(position);
+    snapToNearest(position, 0);
+    // Override: animate from current to next
+    const target = currentSnapped + 1;
+    let current = position;
+    let vel = 0;
+    const stiff = 0.1;
+    const damp = 0.75;
+
+    const anim = () => {
+      const disp = target - current;
+      vel = (vel + disp * stiff) * damp;
+      current += vel;
+      if (Math.abs(disp) < 0.002 && Math.abs(vel) < 0.001) {
+        setPosition(wrapPosition(target));
+        return;
+      }
+      setPosition(current);
+      momentumRaf.current = requestAnimationFrame(anim);
+    };
+    cancelAnimationFrame(momentumRaf.current);
+    momentumRaf.current = requestAnimationFrame(anim);
+  }, [position, getSnappedIndex, wrapPosition]);
+
+  const handlePrev = useCallback(() => {
+    cancelAnimationFrame(momentumRaf.current);
+    const currentSnapped = getSnappedIndex(position);
+    const target = currentSnapped - 1;
+    let current = position;
+    let vel = 0;
+    const stiff = 0.1;
+    const damp = 0.75;
+
+    const anim = () => {
+      const disp = target - current;
+      vel = (vel + disp * stiff) * damp;
+      current += vel;
+      if (Math.abs(disp) < 0.002 && Math.abs(vel) < 0.001) {
+        setPosition(wrapPosition(target));
+        return;
+      }
+      setPosition(current);
+      momentumRaf.current = requestAnimationFrame(anim);
+    };
+    cancelAnimationFrame(momentumRaf.current);
+    momentumRaf.current = requestAnimationFrame(anim);
+  }, [position, getSnappedIndex, wrapPosition]);
+
+  // Click-to-center a side card
+  const handleCardClick = useCallback((index: number) => {
+    if (dragState.current.hasMoved) return;
+
+    cancelAnimationFrame(momentumRaf.current);
+    const currentSnapped = getSnappedIndex(position);
+
+    // Find shortest circular distance
+    let diff = index - (currentSnapped % total);
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+
+    const target = currentSnapped + diff;
+    let current = position;
+    let vel = 0;
+    const stiff = 0.1;
+    const damp = 0.75;
+
+    const anim = () => {
+      const disp = target - current;
+      vel = (vel + disp * stiff) * damp;
+      current += vel;
+      if (Math.abs(disp) < 0.002 && Math.abs(vel) < 0.001) {
+        setPosition(wrapPosition(target));
+        return;
+      }
+      setPosition(current);
+      momentumRaf.current = requestAnimationFrame(anim);
+    };
+    momentumRaf.current = requestAnimationFrame(anim);
+  }, [position, total, getSnappedIndex, wrapPosition]);
+
+  // ─── Pointer (Touch + Mouse) Drag Handling ───
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    // Ignore if clicking a button
+    if ((e.target as HTMLElement).closest('button')) return;
+
+    cancelAnimationFrame(momentumRaf.current);
+    const ds = dragState.current;
+    ds.startX = e.clientX;
+    ds.startPosition = position;
+    ds.lastX = e.clientX;
+    ds.lastTime = performance.now();
+    ds.velocity = 0;
+    ds.isActive = true;
+    ds.hasMoved = false;
+
+    setIsDragging(true);
+
+    // Capture pointer for smooth tracking even outside element
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  }, [position]);
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    const ds = dragState.current;
+    if (!ds.isActive) return;
+
+    const now = performance.now();
+    const dx = e.clientX - ds.lastX;
+    const dt = Math.max(1, now - ds.lastTime);
+
+    // Track velocity (smoothed)
+    ds.velocity = ds.velocity * 0.6 + (dx / dt) * 0.4;
+    ds.lastX = e.clientX;
+    ds.lastTime = now;
+
+    const totalDx = e.clientX - ds.startX;
+
+    if (Math.abs(totalDx) > 5) {
+      ds.hasMoved = true;
+    }
+
+    // Convert pixel drag to fractional index offset
+    const cardW = getCardWidth();
+    const indexOffset = -totalDx / cardW;
+    setPosition(ds.startPosition + indexOffset);
+  }, [getCardWidth]);
+
+  const onPointerUp = useCallback((e: React.PointerEvent) => {
+    const ds = dragState.current;
+    if (!ds.isActive) return;
+
+    ds.isActive = false;
+    setIsDragging(false);
+
+    (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+
+    // Convert pixel velocity to index velocity (negative because drag direction is inverted)
+    const cardW = getCardWidth();
+    const indexVelocity = -(ds.velocity * 16) / cardW; // Scale to ~per-frame
+
+    snapToNearest(position, indexVelocity);
+  }, [position, getCardWidth, snapToNearest]);
+
+  // ─── Mouse Wheel Support ───
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+
+    let wheelTimeout: ReturnType<typeof setTimeout>;
+
+    const onWheel = (e: WheelEvent) => {
+      // Only capture dominant horizontal scrolling or vertical with no horizontal
+      const absX = Math.abs(e.deltaX);
+      const absY = Math.abs(e.deltaY);
+
+      // Use whichever axis has more delta
+      const delta = absX > absY ? e.deltaX : e.deltaY;
+      if (Math.abs(delta) < 2) return;
+
+      e.preventDefault();
+
+      cancelAnimationFrame(momentumRaf.current);
+      clearTimeout(wheelTimeout);
+
+      const cardW = getCardWidth();
+      const indexDelta = delta / cardW;
+      setPosition((prev) => prev + indexDelta);
+
+      // Snap after wheel stops
+      wheelTimeout = setTimeout(() => {
+        setPosition((prev) => {
+          snapToNearest(prev, 0);
+          return prev;
+        });
+      }, 120);
+    };
+
+    stage.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+      stage.removeEventListener('wheel', onWheel);
+      clearTimeout(wheelTimeout);
+    };
+  }, [getCardWidth, snapToNearest]);
+
+  // ─── Keyboard navigation ───
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
-        handlePrev();
-      } else if (e.key === 'ArrowRight') {
-        handleNext();
-      }
+      if (e.key === 'ArrowLeft') handlePrev();
+      else if (e.key === 'ArrowRight') handleNext();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [total]);
+  }, [handleNext, handlePrev]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => cancelAnimationFrame(momentumRaf.current);
+  }, []);
 
   if (!items || items.length === 0) return null;
 
+  // Current active index (nearest integer)
+  const activeIndex = ((Math.round(position) % total) + total) % total;
   const activeItem = items[activeIndex] || items[0];
 
   // Dynamic ambient category glow
@@ -69,33 +316,43 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
       />
 
       {/* 3D Coverflow Perspective Stage */}
-      <div className="relative w-full max-w-6xl h-[510px] sm:h-[560px] md:h-[600px] flex items-center justify-center [perspective:1200px]">
+      <div
+        ref={stageRef}
+        className="relative w-full max-w-6xl h-[510px] sm:h-[560px] md:h-[600px] flex items-center justify-center [perspective:1200px] touch-pan-y"
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+      >
         {items.map((item, index) => {
-          // Circular offset calculation
-          let diff = (index - activeIndex) % total;
-          if (diff > total / 2) diff -= total;
-          if (diff < -total / 2) diff += total;
+          // Circular offset: find shortest distance from current position to this index
+          let diff = index - position;
+          // Normalize into [-total/2, total/2] for infinite wrapping
+          diff = ((diff % total) + total + total / 2) % total - total / 2;
 
-          const isActive = diff === 0;
           const absDiff = Math.abs(diff);
 
-          // Render only visible spread range (-2 to +2)
+          // Render only visible spread range
           if (absDiff > 3) return null;
 
-          // 3D Coverflow Transforms
-          const scale = isActive ? 1 : 0.78;
-          const rotateY = isActive ? 0 : diff < 0 ? 32 : -32;
-          const translateX = isActive ? 0 : diff * (window.innerWidth < 640 ? 170 : 250);
-          const translateZ = isActive ? 40 : -140;
-          const translateY = isActive ? -12 : 16;
-          const opacity = isActive ? 1 : Math.max(0.35, 0.7 - absDiff * 0.2);
-          const zIndex = 30 - absDiff;
-          const filterBlur = isActive ? 'blur(0px)' : 'blur(2px)';
+          const isActive = absDiff < 0.5;
+
+          // Smooth interpolated 3D transforms
+          const scale = 1 - absDiff * 0.15; // active=1, side≈0.85
+          const rotateY = diff * -25; // Perspective rotation proportional to offset
+          const cardSpacing = window.innerWidth < 640 ? 200 : 280;
+          const translateX = diff * cardSpacing;
+          const translateZ = -absDiff * 120;
+          const translateY = absDiff * 20 - (isActive ? 12 : 0);
+          const opacity = Math.max(0.3, 1 - absDiff * 0.3);
+          const zIndex = 30 - Math.round(absDiff * 10);
+          const filterBlur = `blur(${Math.min(absDiff * 1.5, 3)}px)`;
 
           return (
             <motion.div
               key={item.id}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => handleCardClick(index)}
               initial={false}
               animate={{
                 scale,
@@ -106,15 +363,15 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
                 opacity,
                 filter: filterBlur,
               }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 24,
-                mass: 0.8,
-              }}
+              transition={
+                isDragging
+                  ? { type: 'tween', duration: 0.05, ease: 'linear' }
+                  : { type: 'spring', stiffness: 280, damping: 26, mass: 0.7 }
+              }
               style={{
                 zIndex,
                 transformStyle: 'preserve-3d',
+                willChange: 'transform, opacity',
               }}
               className={`absolute top-0 w-[290px] xs:w-[320px] sm:w-[370px] md:w-[400px] cursor-pointer rounded-[2rem] border border-white/15 bg-[#0c0c10]/85 backdrop-blur-[32px] overflow-hidden transition-shadow duration-500 ${
                 isActive
@@ -132,6 +389,7 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
                   alt={item.title}
                   className="w-full h-full object-contain object-center rounded-xl transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
+                  draggable={false}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c10] via-transparent to-transparent pointer-events-none" />
               </div>
@@ -154,7 +412,9 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    onRegister(item);
+                    if (!dragState.current.hasMoved) {
+                      onRegister(item);
+                    }
                   }}
                   className={`w-full py-2.5 sm:py-3 rounded-full font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)] ${
                     isActive

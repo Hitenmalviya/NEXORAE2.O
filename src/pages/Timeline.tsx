@@ -426,22 +426,9 @@ export default function Timeline() {
                         </div>
 
                         {/* Description */}
-                        <p className="text-muted text-xs sm:text-sm font-light leading-relaxed mb-3">
+                        <p className="text-muted text-xs sm:text-sm font-light leading-relaxed mb-4">
                           {item.description}
                         </p>
-
-                        {/* Event Poster Image Banner */}
-                        {item.poster && (
-                          <div className="my-3 rounded-lg overflow-hidden border border-white/10 bg-black/50 h-36 sm:h-48 w-full relative">
-                            <img
-                              src={item.poster}
-                              alt={item.title}
-                              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 brightness-95"
-                              loading="lazy"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-                          </div>
-                        )}
 
                         {/* Footer Info Row */}
                         <div

@@ -28,7 +28,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     time: '10:00 to 11:00',
     title: 'Inauguration',
     category: 'Registration',
-    organizer: 'NEXORAE Core',
+    organizer: 'NEXORAE ',
     description: 'Official opening ceremony of NEXORAE 2.0. Unveiling the portal, keynotes, and grand festival kickoff.',
     venue: 'Auditorium',
     status: 'upcoming',

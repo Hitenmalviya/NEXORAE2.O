@@ -124,7 +124,14 @@ export default function CinematicHero() {
         animate="visible"
       >
         <div className="st-center-container">
-          <motion.div className="st-logo-wrapper" variants={item}>
+          <motion.div className="st-logo-wrapper flex flex-col items-center gap-2 sm:gap-3" variants={item}>
+            {/* Responsive Emblem Insignia - Visible on Mobile viewports only */}
+            <img
+              src="/images/ll.png"
+              alt="NEXORAE 2.0 Emblem"
+              className="w-20 h-20 sm:w-24 sm:h-24 md:hidden object-contain filter drop-shadow-[0_0_20px_rgba(220,38,38,0.8)] mb-1 sm:mb-2 animate-pulse"
+              style={{ animationDuration: '4s' }}
+            />
             <img
               src="/images/nexorae-logo.png"
               alt="NEXORAE 2.0 - Innovation Beyond Horizons"

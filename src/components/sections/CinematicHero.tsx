@@ -132,14 +132,6 @@ export default function CinematicHero() {
             />
           </motion.div>
 
-          {/* Tagline */}
-          <motion.p
-            variants={item}
-            className="font-mono text-xs sm:text-sm uppercase tracking-[0.35em] sm:tracking-[0.45em] text-red-400/90 font-medium my-2 sm:my-3 text-center drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]"
-          >
-            INNOVATION BEYOND HORIZONS
-          </motion.p>
-
           {/* Centered Event Information Line */}
           <motion.p
             variants={item}

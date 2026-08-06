@@ -41,7 +41,7 @@ export const EVENTS: Event[] = [
     difficulty: 'medium',
     prize: '₹5,000',
     description: 'Take on the ultimate engineering challenge by building a protective shield using the given materials to save your raw egg from drops off the 1st, 2nd, and 3rd floors!',
-    poster: '/posters/Frame 44.png',
+    poster: '/posters/Frame 48.png',
     team: { min: 2, max: 3 },
     icon: '🥚',
   },

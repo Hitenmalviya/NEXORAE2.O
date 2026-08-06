@@ -118,7 +118,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'RAS',
     description: 'Engineering drop challenge by building protective shields to save raw egg payloads from multi-floor drops.',
     venue: 'Parking and ground',
-    poster: '/posters/Frame 44.png',
+    poster: '/posters/Frame 48.png',
     status: 'upcoming',
   },
   {

@@ -67,8 +67,7 @@ function ClassifiedEventCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => document.body.classList.add('cursor-hover')}
       onMouseLeave={() => document.body.classList.remove('cursor-hover')}
-      className={`group relative rounded-lg border bg-gradient-to-b ${categoryConfig.glow} ${categoryConfig.border} transition-all duration-500 flex flex-col justify-between overflow-hidden ${isFeatured ? 'md:col-span-2 lg:col-span-2' : ''
-        }`}
+      className={`group relative rounded-lg border bg-gradient-to-b ${categoryConfig.glow} ${categoryConfig.border} transition-all duration-500 flex flex-col justify-between overflow-hidden h-[780px] w-full`}
     >
       {/* Slow red/blue light sweep effect on hover */}
       <div
@@ -88,7 +87,7 @@ function ClassifiedEventCard({
       />
 
       {/* Top Header Row */}
-      <div className="relative z-10 p-4 sm:p-6 md:p-8 pb-3 border-b border-white/[0.06] flex items-start justify-between gap-3">
+      <div className="relative z-10 p-4 sm:p-6 pb-3 border-b border-white/[0.06] flex items-start justify-between gap-3 shrink-0">
         <div>
           <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2 flex-wrap">
             <span className="font-mono text-xl sm:text-2xl font-black text-red-500/60 group-hover:text-red-500 group-hover:scale-105 transition-all duration-300">
@@ -111,9 +110,9 @@ function ClassifiedEventCard({
         </span>
       </div>
 
-      {/* Event Poster Container - Full 1:1 Instagram Poster (Zero Cropping) */}
+      {/* Event Poster Container - Fixed Poster Height (Zero Cropping) */}
       {event.poster && (
-        <div className="relative z-10 w-full aspect-square overflow-hidden border-b border-white/[0.06] bg-[#090909] flex items-center justify-center">
+        <div className="relative z-10 w-full h-[350px] shrink-0 overflow-hidden border-b border-white/[0.06] bg-[#090909] flex items-center justify-center">
           <img
             src={event.poster}
             alt={event.name}
@@ -125,12 +124,30 @@ function ClassifiedEventCard({
       )}
 
       {/* Main Body */}
-      <div className="relative z-10 p-4 sm:p-6 md:p-8 flex-grow flex flex-col justify-between">
+      <div className="relative z-10 p-4 sm:p-6 flex-grow flex flex-col justify-between overflow-hidden">
         <div>
-          <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-wider text-zinc-100 group-hover:text-white group-hover:translate-x-1 transition-all duration-300 mb-2 sm:mb-3">
+          <h3
+            className="font-display text-xl sm:text-2xl font-bold uppercase tracking-wider text-zinc-100 group-hover:text-white group-hover:translate-x-1 transition-all duration-300 mb-2 sm:mb-3"
+            style={{
+              minHeight: '72px',
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+            }}
+          >
             {event.name}
           </h3>
-          <p className="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed mb-4 sm:mb-6 line-clamp-3">
+          <p
+            className="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed mb-4"
+            style={{
+              minHeight: '96px',
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+            }}
+          >
             {event.description}
           </p>
         </div>
@@ -151,7 +168,7 @@ function ClassifiedEventCard({
       </div>
 
       {/* Action Bar */}
-      <div className="relative z-10 px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-black/60 border-t border-white/[0.06] flex items-center justify-between gap-2">
+      <div className="relative z-10 px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-black/60 border-t border-white/[0.06] flex items-center justify-between gap-2 mt-auto shrink-0">
         <span className="text-[9px] sm:text-[10px] font-mono tracking-widest text-zinc-500 group-hover:text-zinc-300 transition-colors truncate">
           SECTOR #{formattedNumber}
         </span>

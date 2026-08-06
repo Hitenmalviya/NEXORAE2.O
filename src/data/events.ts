@@ -2,13 +2,13 @@ import type { Event } from '@/types';
 
 export const EVENTS: Event[] = [
   {
-    id: 'the-upside-down',
-    name: 'The Upside Down: The Final Portal',
+    id: 'upside-down',
+    name: ' Upside Down: The Final Portal',
     category: 'fun',
     difficulty: 'hard',
     description: 'A logic-based treasure hunt with puzzles, clues, and campus challenges. Decode, explore, and sprint across campus. Team up to uncover the Final Portal!',
     poster: '/posters/Frame 47.png',
-    team: { min: 4, max: 4 },
+    team: { min: 6, max: 6 },
     icon: '🌀',
     registrationUrl: 'https://forms.gle/xgUTzZKfVt9KeoNC6',
   },
@@ -73,7 +73,7 @@ export const EVENTS: Event[] = [
     difficulty: 'easy',
     description: 'Take on fun mini-games while Chaos Cards introduce twists like blindfolds, no talking, or reversed instructions. Adapt fast, work as a team, and conquer the chaos!',
     poster: '/posters/Hawkins Havoc.png',
-    team: { min: 2, max: 4 },
+    team: { min: 5, max: 5 },
     icon: '🃏',
     registrationUrl: 'https://forms.gle/TCEd4ZM2pqHV9jsA7',
   },

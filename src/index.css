@@ -394,7 +394,7 @@
   background-position: 40% 7% !important;
   position: absolute;
   inset: 0;
-  background-image: url('/images/v1.png');
+  background-image: url('/images/v1.webp');
   background-size: cover;
   pointer-events: none;
   opacity: 0;
@@ -551,7 +551,7 @@
 
 @media (max-width: 768px) {
   .st-hero {
-    background-image: url('/images/hero-mobile.jpg');
+    background-image: url('/images/hero-mobile.webp');
     background-size: cover;
     background-position: center center;
   }

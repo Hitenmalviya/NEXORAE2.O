@@ -40,7 +40,7 @@ export default function Footer() {
       {/* Single Parent Background Image Layer — Stranger Things Alphabet Christmas Lights Wall */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img
-          src="/contact-bg.jpg"
+          src="/contact-bg.webp"
           alt="Stranger Things Alphabet Lights Wall Background"
           className="w-full h-full object-cover object-center filter brightness-[0.7] contrast-125 opacity-75 sm:opacity-85"
         />
@@ -80,12 +80,12 @@ export default function Footer() {
             onMouseLeave={() => document.body.classList.remove('cursor-hover')}
           >
             <img
-              src="/images/lw.png"
+              src="/images/lw.webp"
               alt="NEXORAE 2.0 Emblem"
               className="h-12 sm:h-16 w-auto object-contain filter drop-shadow-[0_0_20px_rgba(220,38,38,0.8)] group-hover:scale-105 transition-transform duration-300"
             />
             <span className="inline-flex items-baseline">
-              <img src="/images/wt.png" alt="NEXORAE 2.0 Emblem" className="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300" />
+              <img src="/images/wt.webp" alt="NEXORAE 2.0 Emblem" className="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300" />
             </span>
           </Link>
         </div>

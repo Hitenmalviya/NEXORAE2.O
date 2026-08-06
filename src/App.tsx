@@ -7,24 +7,15 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Preloader from '@/components/ui/Preloader';
 import ScrollToTop from '@/components/layout/ScrollToTop';
-import { AuthProvider } from '@/context/AuthContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Lazy load all pages
+// Lazy load public static pages
 const Home = lazy(() => import('@/pages/Home'));
 const Events = lazy(() => import('@/pages/Events'));
 const Timeline = lazy(() => import('@/pages/Timeline'));
 const Contact = lazy(() => import('@/pages/Contact'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
-
-const AdminLogin = lazy(() => import('@/pages/admin/AdminLogin'));
-const AdminDashboard = lazy(() => import('@/pages/admin/AdminDashboard'));
-const AdminPayments = lazy(() => import('@/pages/admin/AdminPayments'));
-const AdminStudents = lazy(() => import('@/pages/admin/AdminStudents'));
-const AdminEvents = lazy(() => import('@/pages/admin/AdminEvents'));
-const AdminRegistrations = lazy(() => import('@/pages/admin/AdminRegistrations'));
-const AdminGuard = lazy(() => import('@/components/admin/AdminGuard'));
 
 // Film grain overlay
 function FilmGrain() {
@@ -62,26 +53,16 @@ function AnimatedRoutes() {
     <>
       <ScrollToTop />
       <AnimatePresence mode="wait">
-      <Suspense fallback={<PageLoader />}>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<Navigate to="/#about" replace />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/timeline" element={<Timeline />} />
-          <Route path="/register" element={<Navigate to="/events" replace />} />
-          <Route path="/dashboard" element={<Navigate to="/events" replace />} />
-          <Route path="/contact" element={<Contact />} />
-          
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminGuard><AdminDashboard /></AdminGuard>} />
-          <Route path="/admin/payments" element={<AdminGuard><AdminPayments /></AdminGuard>} />
-          <Route path="/admin/students" element={<AdminGuard><AdminStudents /></AdminGuard>} />
-          <Route path="/admin/events" element={<AdminGuard><AdminEvents /></AdminGuard>} />
-          <Route path="/admin/registrations" element={<AdminGuard><AdminRegistrations /></AdminGuard>} />
-          
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+        <Suspense fallback={<PageLoader />}>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<Navigate to="/#about" replace />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/timeline" element={<Timeline />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </AnimatePresence>
     </>
   );
@@ -134,9 +115,7 @@ function AppInner() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <AppInner />
-      </AuthProvider>
+      <AppInner />
     </BrowserRouter>
   );
 }

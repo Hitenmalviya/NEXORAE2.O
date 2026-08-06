@@ -229,7 +229,7 @@ export default function Events() {
         {/* Main Landscape Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100 scale-100 filter brightness-110 contrast-105"
-          style={{ backgroundImage: 'url("/events-bg.jpg")' }}
+          style={{ backgroundImage: 'url("/events-bg.webp")' }}
         />
 
         {/* Atmospheric Red (Left) and Blue (Right) Dual Color Gradient Overlay */}

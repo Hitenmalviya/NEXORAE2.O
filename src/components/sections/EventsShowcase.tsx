@@ -18,7 +18,7 @@ export default function EventsShowcase() {
   const coverflowItems: CoverflowItem[] = useMemo(() => {
     return filteredEvents.map((event) => ({
       id: event.id,
-      image: event.poster || '/posters/Code Red .png',
+      image: event.poster || '/posters/Code Red .webp',
       title: event.name,
       category: event.category,
       prize: event.prize,
@@ -40,7 +40,7 @@ export default function EventsShowcase() {
       {/* Atmospheric Background Image Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
-          src="/events-bg.jpg"
+          src="/events-bg.webp"
           alt="Events Atmosphere Background"
           className="w-full h-full object-cover object-center opacity-90 filter brightness-95 contrast-105"
         />

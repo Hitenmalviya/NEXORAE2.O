@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import DomeGallery from '@/components/ui/DomeGallery';
 
@@ -31,14 +31,38 @@ const DOME_PHOTOS = [
 
 export default function PreviousGlimpses() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isIntersected, setIsIntersected] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersected(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   const handlePlayToggle = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
       } else {
-        videoRef.current.play().catch(() => {});
+        if (!isIntersected) {
+          setIsIntersected(true);
+        }
+        // Force state update sync before playing
+        setTimeout(() => {
+          videoRef.current?.play().catch(() => {});
+        }, 50);
       }
       setIsPlaying(!isPlaying);
     }
@@ -61,7 +85,7 @@ export default function PreviousGlimpses() {
       </div>
 
       {/* 1. Single Highlight Video Placeholder */}
-      <div className="max-w-[1100px] mx-auto mb-12 sm:mb-24 px-4 sm:px-6">
+      <div className="max-w-[1100px] mx-auto mb-12 sm:mb-24 px-4 sm:px-6" ref={containerRef}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,13 +98,14 @@ export default function PreviousGlimpses() {
             <video
               ref={videoRef}
               className="w-full h-full object-cover"
-              poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1600&auto=format&fit=crop"
+              poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=600&auto=format&fit=crop"
               playsInline
-              autoPlay
+              autoPlay={isIntersected}
+              preload={isIntersected ? "auto" : "none"}
               muted
               loop
             >
-              <source src="/videos/glimpses.mp4" type="video/mp4" />
+              {isIntersected && <source src="/videos/glimpses.mp4" type="video/mp4" />}
               Your browser does not support the video tag.
             </video>
           </div>

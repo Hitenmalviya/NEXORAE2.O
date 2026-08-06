@@ -7,7 +7,7 @@ export default function AboutSection() {
       {/* Background Image Layer — Demogorgon Atmosphere */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img
-          src="/about-bg.jpg"
+          src="/about-bg.webp"
           alt="About Us Background"
           className="w-full h-full object-cover object-center filter brightness-95 contrast-105 opacity-85 sm:opacity-90"
         />

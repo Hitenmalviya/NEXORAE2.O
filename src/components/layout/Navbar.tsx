@@ -62,13 +62,13 @@ export default function Navbar() {
           >
             {/* Desktop Emblem */}
             <img
-              src="/images/ll.png"
+              src="/images/ll.webp"
               alt="NEXORAE 2.0 Emblem"
               className="hidden md:block h-12 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300"
             />
             {/* Mobile Emblem */}
             <img
-              src="/images/lw.png"
+              src="/images/lw.webp"
               alt="NEXORAE 2.0 Emblem"
               className="block md:hidden h-10 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300"
             />

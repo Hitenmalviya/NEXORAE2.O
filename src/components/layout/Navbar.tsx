@@ -60,10 +60,17 @@ export default function Navbar() {
             onMouseEnter={() => document.body.classList.add('cursor-hover')}
             onMouseLeave={() => document.body.classList.remove('cursor-hover')}
           >
+            {/* Desktop Emblem */}
             <img
               src="/images/ll.png"
               alt="NEXORAE 2.0 Emblem"
-              className="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300"
+              className="hidden md:block h-12 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300"
+            />
+            {/* Mobile Emblem */}
+            <img
+              src="/images/lw.png"
+              alt="NEXORAE 2.0 Emblem"
+              className="block md:hidden h-10 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300"
             />
             <span className="font-bold text-sm sm:text-base uppercase tracking-[0.1em] stranger-things-title hidden xs:inline-block">
               NEXORAE<span className="text-glow">E</span> <span className="text-xs font-mono text-glow-bright ml-0.5">2.0</span>

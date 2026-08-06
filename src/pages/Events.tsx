@@ -67,7 +67,7 @@ function ClassifiedEventCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => document.body.classList.add('cursor-hover')}
       onMouseLeave={() => document.body.classList.remove('cursor-hover')}
-      className={`group relative rounded-lg border bg-gradient-to-b ${categoryConfig.glow} ${categoryConfig.border} transition-all duration-500 flex flex-col justify-between overflow-hidden h-[780px] w-full`}
+      className={`group relative rounded-lg border bg-gradient-to-b ${categoryConfig.glow} ${categoryConfig.border} transition-all duration-500 flex flex-col justify-between overflow-hidden h-[800px] w-full`}
     >
       {/* Slow red/blue light sweep effect on hover */}
       <div
@@ -112,7 +112,7 @@ function ClassifiedEventCard({
 
       {/* Event Poster Container - Fixed Poster Height (Zero Cropping) */}
       {event.poster && (
-        <div className="relative z-10 w-full h-[350px] shrink-0 overflow-hidden border-b border-white/[0.06] bg-[#090909] flex items-center justify-center">
+        <div className="relative z-10 w-full h-[320px] shrink-0 overflow-hidden border-b border-white/[0.06] bg-[#090909] flex items-center justify-center">
           <img
             src={event.poster}
             alt={event.name}
@@ -124,7 +124,7 @@ function ClassifiedEventCard({
       )}
 
       {/* Main Body */}
-      <div className="relative z-10 p-4 sm:p-6 flex-grow flex flex-col justify-between overflow-hidden">
+      <div className="relative z-10 p-4 sm:p-6 flex-grow flex flex-col justify-between">
         <div>
           <h3
             className="font-display text-xl sm:text-2xl font-bold uppercase tracking-wider text-zinc-100 group-hover:text-white group-hover:translate-x-1 transition-all duration-300 mb-2 sm:mb-3"

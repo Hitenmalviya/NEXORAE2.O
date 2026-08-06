@@ -26,6 +26,7 @@ export default function EventsShowcase() {
       icon: event.icon,
       team: event.team,
       registrationUrl: event.registrationUrl,
+      hideRegister: event.hideRegister,
     }));
   }, [filteredEvents]);
 

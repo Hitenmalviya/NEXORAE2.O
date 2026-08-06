@@ -120,6 +120,16 @@ export const EVENTS: Event[] = [
     icon: '💪',
     registrationUrl: 'https://forms.gle/zZZmVNNCETnriawA6',
   },
+  {
+    id: 'donation-drive',
+    name: 'Donation Drive',
+    category: 'fun',
+    difficulty: 'easy',
+    description: 'Join the donation drive by contributing books, stationery, school essentials, or educational materials. Every donation placed in the foyer collection boxes brings hope and empowers future learners.',
+    poster: '/posters/Frame 44.png',
+    icon: '📚',
+    hideRegister: true,
+  },
 ];
 
 export const EVENT_CATEGORIES = [

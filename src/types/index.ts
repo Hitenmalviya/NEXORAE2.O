@@ -9,6 +9,7 @@ export interface Event {
   team?: { min: number; max: number };
   icon: string;
   registrationUrl?: string;
+  hideRegister?: boolean;
 }
 
 export interface FAQItem {

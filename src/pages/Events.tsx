@@ -173,12 +173,18 @@ function ClassifiedEventCard({
           SECTOR #{formattedNumber}
         </span>
 
-        <button
-          onClick={() => onRegister(event)}
-          className="px-3.5 sm:px-5 py-1.5 sm:py-2 text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold text-red-400 bg-red-950/40 border border-red-700/50 rounded group-hover:bg-red-600 group-hover:text-white group-hover:border-red-500 transition-all duration-300 shadow-[0_0_15px_rgba(220,38,38,0.2)] shrink-0"
-        >
-          ENTER ARENA →
-        </button>
+        {event.hideRegister ? (
+          <span className="px-3.5 sm:px-5 py-1.5 sm:py-2 text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.15em] sm:tracking-[0.2em] font-semibold text-zinc-500 border border-white/10 bg-white/[0.04] rounded select-none shrink-0">
+            OPEN FOR ALL
+          </span>
+        ) : (
+          <button
+            onClick={() => onRegister(event)}
+            className="px-3.5 sm:px-5 py-1.5 sm:py-2 text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold text-red-400 bg-red-950/40 border border-red-700/50 rounded group-hover:bg-red-600 group-hover:text-white group-hover:border-red-500 transition-all duration-300 shadow-[0_0_15px_rgba(220,38,38,0.2)] shrink-0"
+          >
+            ENTER ARENA →
+          </button>
+        )}
       </div>
     </motion.div>
   );

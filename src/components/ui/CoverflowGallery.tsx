@@ -11,6 +11,7 @@ export interface CoverflowItem {
   icon?: string;
   team?: { min: number; max: number };
   registrationUrl?: string;
+  hideRegister?: boolean;
 }
 
 interface CoverflowGalleryProps {
@@ -368,24 +369,32 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
                   </p>
                 </div>
 
-                {/* CTA Button */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (!dragState.current.hasMoved) {
-                      onRegister(item);
-                    }
-                  }}
-                  className={`w-full py-2.5 sm:py-3 rounded-full font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)] ${
-                    isActive
-                      ? 'bg-gradient-to-r from-red-600 via-red-500 to-red-600 hover:brightness-125 border border-red-400/60 shadow-[0_0_30px_rgba(220,38,38,0.7)] hover:scale-[1.02] active:scale-[0.98]'
-                      : 'bg-white/10 border border-white/20 hover:bg-white/20'
-                  }`}
-                  onMouseEnter={() => document.body.classList.add('cursor-hover')}
-                  onMouseLeave={() => document.body.classList.remove('cursor-hover')}
-                >
-                  ENTER ARENA →
-                </button>
+                {/* CTA Button / Status Badge */}
+                {item.hideRegister ? (
+                  <div
+                    className="w-full py-2.5 sm:py-3 rounded-full font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 bg-white/[0.04] border border-white/10 select-none text-center"
+                  >
+                    OPEN FOR ALL
+                  </div>
+                ) : (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!dragState.current.hasMoved) {
+                        onRegister(item);
+                      }
+                    }}
+                    className={`w-full py-2.5 sm:py-3 rounded-full font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)] ${
+                      isActive
+                        ? 'bg-gradient-to-r from-red-600 via-red-500 to-red-600 hover:brightness-125 border border-red-400/60 shadow-[0_0_30px_rgba(220,38,38,0.7)] hover:scale-[1.02] active:scale-[0.98]'
+                        : 'bg-white/10 border border-white/20 hover:bg-white/20'
+                    }`}
+                    onMouseEnter={() => document.body.classList.add('cursor-hover')}
+                    onMouseLeave={() => document.body.classList.remove('cursor-hover')}
+                  >
+                    ENTER ARENA →
+                  </button>
+                )}
               </div>
             </motion.div>
           );

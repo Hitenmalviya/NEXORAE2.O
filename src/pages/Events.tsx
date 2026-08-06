@@ -111,16 +111,16 @@ function ClassifiedEventCard({
         </span>
       </div>
 
-      {/* Event Poster Banner - Full Width & Centered on Mobile */}
+      {/* Event Poster Container - Full 1:1 Instagram Poster (Zero Cropping) */}
       {event.poster && (
-        <div className="relative z-10 w-full h-48 sm:h-56 overflow-hidden border-b border-white/[0.06] bg-black/50">
+        <div className="relative z-10 w-full aspect-square overflow-hidden border-b border-white/[0.06] bg-[#090909] flex items-center justify-center">
           <img
             src={event.poster}
             alt={event.name}
-            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 brightness-95 contrast-105"
+            className="w-full h-full object-contain object-center group-hover:scale-[1.02] transition-transform duration-700 brightness-95 contrast-105"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 via-transparent to-transparent pointer-events-none" />
         </div>
       )}
 

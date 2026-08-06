@@ -26,6 +26,7 @@ export default function EventsShowcase() {
       category: event.category,
       prize: event.prize,
       icon: event.icon,
+      team: event.team,
     }));
   }, [filteredEvents]);
 
@@ -41,7 +42,7 @@ export default function EventsShowcase() {
   };
 
   return (
-    <section className="relative min-h-screen py-12 sm:py-20 bg-void overflow-hidden flex flex-col justify-center select-none" id="events">
+    <section className="relative min-h-screen py-16 sm:py-24 bg-void overflow-hidden flex flex-col items-center justify-center select-none" id="events">
       {/* Uploaded Atmospheric Background Image Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
@@ -57,98 +58,123 @@ export default function EventsShowcase() {
       {/* Interactive Mouse Hover Fog & Spores Layer */}
       <FogEffect />
 
-      {/* Section Header */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto text-center px-4 sm:px-6 mb-4 sm:mb-6 overflow-hidden">
-        <div className="flex items-center justify-center gap-2 sm:gap-6 mb-3 sm:mb-4">
-          <div className="hidden sm:block flex-1 h-px bg-white/[0.08]" />
-          <h2 className="font-display text-xl sm:text-3xl md:text-5xl font-bold tracking-[0.05em] sm:tracking-[0.1em] uppercase drop-shadow-lg text-white">
-            THE BATTLE <span className="text-glow">BEGINS</span>
-          </h2>
-          <div className="hidden sm:block flex-1 h-px bg-white/[0.08]" />
-        </div>
+      {/* Unified Apple VisionOS Glass Showcase Window */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="relative rounded-[2rem] sm:rounded-[3rem] border border-white/15 bg-[#0a0a0d]/70 backdrop-blur-[40px] shadow-[0_30px_100px_rgba(0,0,0,0.9),0_0_80px_rgba(220,38,38,0.12)] overflow-hidden transition-all duration-700 p-6 sm:p-10 md:p-12 border-t-white/25">
+          
+          {/* Internal Glass Highlight Sweep */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] via-transparent to-black/40 pointer-events-none" />
 
-        <p className="text-zinc-300 text-[10px] sm:text-xs md:text-sm tracking-wider sm:tracking-[0.2em] uppercase font-light max-w-xl mx-auto mb-6 sm:mb-8 drop-shadow px-2 break-words">
-          11 ARENAS • COUNTLESS POSSIBILITIES • CHOOSE WISELY
-        </p>
+          {/* Dynamic Category Ambient Light Glow (Red / Purple / Emerald) */}
+          <div
+            className={`absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-[120px] pointer-events-none transition-all duration-700 opacity-40 ${
+              activeEvent?.category === 'tech'
+                ? 'bg-red-600'
+                : activeEvent?.category === 'design'
+                ? 'bg-purple-600'
+                : 'bg-emerald-600'
+            }`}
+          />
 
-        {/* Category Filter Tabs with Horizontal Scroll on Mobile */}
-        <div className="flex items-center justify-start sm:justify-center overflow-x-auto pb-3 px-2 gap-2 sm:gap-3 flex-nowrap sm:flex-wrap max-w-full w-full [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-          {EVENT_CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => handleCategoryChange(cat.id)}
-              className={`px-3.5 sm:px-5 py-1.5 sm:py-2 text-[10px] uppercase tracking-wider sm:tracking-[0.2em] rounded-full border transition-all duration-300 font-mono whitespace-nowrap shrink-0 ${
-                activeCategory === cat.id
-                  ? 'bg-glow border-glow text-white shadow-[0_0_25px_rgba(220,38,38,0.4)] scale-105'
-                  : 'border-white/20 text-zinc-300 hover:text-white hover:border-white/40 glass-strong'
-              }`}
-              onMouseEnter={() => document.body.classList.add('cursor-hover')}
-              onMouseLeave={() => document.body.classList.remove('cursor-hover')}
-            >
-              {cat.icon} {cat.label}
-            </button>
-          ))}
+          {/* Card Header & Category Filter Pills */}
+          <div className="relative z-10 text-center mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] font-mono tracking-[0.3em] uppercase text-zinc-400 mb-3 backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+              ARENA SHOWCASE // CLASSIFIED
+            </div>
+
+            <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-wider text-white drop-shadow-2xl mb-4">
+              THE BATTLE <span className="text-glow">BEGINS</span>
+            </h2>
+
+            {/* Category Pills inside Glass Container */}
+            <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
+              {EVENT_CATEGORIES.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => handleCategoryChange(cat.id)}
+                  className={`px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] uppercase font-mono tracking-[0.2em] rounded-full border transition-all duration-300 backdrop-blur-xl ${
+                    activeCategory === cat.id
+                      ? 'bg-red-600/80 border-red-400 text-white shadow-[0_0_20px_rgba(220,38,38,0.5)] scale-105'
+                      : 'bg-white/[0.04] border-white/10 text-zinc-400 hover:text-white hover:border-white/30'
+                  }`}
+                  onMouseEnter={() => document.body.classList.add('cursor-hover')}
+                  onMouseLeave={() => document.body.classList.remove('cursor-hover')}
+                >
+                  {cat.icon} {cat.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Interactive WebGL Circular Gallery Carousel (Top Section of Glass Container) */}
+          <div className="w-full h-[320px] sm:h-[380px] md:h-[420px] relative my-2 z-10 flex items-center justify-center">
+            <CircularGallery
+              key={activeCategory}
+              items={galleryItems}
+              bend={2.5}
+              scrollEase={0.04}
+              onActiveIndexChange={setActiveIndex}
+            />
+          </div>
+
+          {/* Apple Glass Separator Line */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/15 to-transparent my-6 sm:my-8" />
+
+          {/* Information Section (Bottom Section of Glass Container) */}
+          {activeEvent && (
+            <div className="relative z-20 text-center max-w-3xl mx-auto">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeEvent.id}
+                  initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.98 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {/* Event Title */}
+                  <h3 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-wider text-white mb-4 drop-shadow-2xl">
+                    {activeEvent.title}
+                  </h3>
+
+                  {/* Floating Glass Metadata Chips */}
+                  <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6 flex-wrap font-mono text-[10px] sm:text-xs">
+                    <span className="px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-red-400 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.3)] tracking-wider font-semibold">
+                      {activeEvent.icon} {activeEvent.category.toUpperCase()} ARENA
+                    </span>
+
+                    {activeEvent.prize && (
+                      <span className="px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-amber-400 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.3)] tracking-wider font-semibold">
+                        🏆 {activeEvent.prize} PRIZE
+                      </span>
+                    )}
+
+                    <span className="px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-zinc-300 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.3)] tracking-wider font-semibold">
+                      👥 {activeEvent.team ? `${activeEvent.team.min}-${activeEvent.team.max}` : '1-4'} OPERATIVES
+                    </span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-zinc-300 text-xs sm:text-base font-light leading-relaxed max-w-2xl mx-auto mb-8 tracking-wide">
+                    {activeEvent.description}
+                  </p>
+
+                  {/* Apple-Inspired VisionOS Glass CTA Button */}
+                  <button
+                    onClick={handleRegisterClick}
+                    className="px-8 sm:px-12 py-3.5 sm:py-4 rounded-full font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-white bg-gradient-to-r from-red-600 via-red-500 to-red-600 hover:brightness-125 border border-red-400/60 shadow-[0_0_30px_rgba(220,38,38,0.5)] hover:shadow-[0_0_50px_rgba(220,38,38,0.8)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 backdrop-blur-xl inline-flex items-center justify-center gap-2 group"
+                    onMouseEnter={() => document.body.classList.add('cursor-hover')}
+                    onMouseLeave={() => document.body.classList.remove('cursor-hover')}
+                  >
+                    ENTER ARENA
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+                  </button>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* WebGL Circular Bending Gallery Stage */}
-      <div className="w-full h-[380px] sm:h-[450px] md:h-[480px] relative my-1 sm:my-2 z-10 flex items-center justify-center">
-        <CircularGallery
-          key={activeCategory}
-          items={galleryItems}
-          bend={2.8}
-          scrollEase={0.04}
-          onActiveIndexChange={setActiveIndex}
-        />
-      </div>
-
-      {/* Active Event Info & Description Card overlay */}
-      {activeEvent && (
-        <div className="relative z-20 max-w-2xl mx-auto px-4 w-full mt-2 sm:mt-4">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeEvent.id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-              className="glass-strong p-4 sm:p-6 rounded-xl border border-glow/30 shadow-[0_0_35px_rgba(220,38,38,0.15)] text-center relative overflow-hidden backdrop-blur-md"
-            >
-              {/* Subtle top glow bar */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-glow to-transparent" />
-
-              <div className="flex items-center justify-center gap-2 mb-2 flex-wrap">
-                <span className="text-xl">{activeEvent.icon}</span>
-                <span className="text-[10px] font-mono uppercase tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-red-500/40 bg-red-950/30 text-red-400">
-                  {activeEvent.category} ARENA
-                </span>
-                {activeEvent.prize && (
-                  <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-amber-500/40 bg-amber-950/30 text-amber-400 font-bold">
-                    PRIZE: {activeEvent.prize}
-                  </span>
-                )}
-              </div>
-
-              <h3 className="font-display text-xl sm:text-2xl font-bold uppercase tracking-wider text-white mb-2 drop-shadow">
-                {activeEvent.title}
-              </h3>
-
-              <p className="text-zinc-300 text-xs sm:text-sm font-light leading-relaxed max-w-lg mx-auto mb-4 line-clamp-3">
-                {activeEvent.description}
-              </p>
-
-              <button
-                onClick={handleRegisterClick}
-                className="px-5 py-2 text-xs font-mono uppercase tracking-[0.2em] font-bold text-white bg-red-600 hover:bg-red-500 border border-red-400 rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)]"
-                onMouseEnter={() => document.body.classList.add('cursor-hover')}
-                onMouseLeave={() => document.body.classList.remove('cursor-hover')}
-              >
-                ENTER ARENA →
-              </button>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      )}
     </section>
   );
 }

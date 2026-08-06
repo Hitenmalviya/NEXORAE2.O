@@ -134,11 +134,18 @@ export default function CinematicHero() {
 
           {/* Centered Event Information Pill */}
           <motion.div
-            variants={item}
-            whileHover={{ y: -2, scale: 1.02 }}
-            className="px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full border border-white/10 bg-[#0a0a0c]/25 backdrop-blur-[22px] shadow-[0_12px_40px_rgba(0,0,0,0.7),0_0_20px_rgba(220,38,38,0.15)] hover:border-red-500/30 hover:shadow-[0_15px_45px_rgba(220,38,38,0.3)] transition-all duration-300 pointer-events-auto"
+            variants={{
+              hidden: { opacity: 0, y: 8 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+              },
+            }}
+            whileHover={{ y: -3, scale: 1.015 }}
+            className="px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full border border-red-500/20 bg-[#0a0a0d]/55 backdrop-blur-[24px] backdrop-saturate-[1.25] shadow-[0_8px_32px_rgba(0,0,0,0.65),0_0_15px_rgba(220,38,38,0.12),inset_0_1px_0_rgba(255,255,255,0.05)] hover:border-red-500/40 hover:shadow-[0_12px_36px_rgba(0,0,0,0.85),0_0_22px_rgba(220,38,38,0.25),inset_0_1px_0_rgba(255,255,255,0.08)] transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto"
           >
-            <p className="font-sans font-medium text-xs sm:text-sm uppercase tracking-[0.28em] text-white/90 text-center whitespace-nowrap">
+            <p className="font-sans font-medium text-xs sm:text-sm uppercase tracking-[0.28em] text-white/95 text-center whitespace-nowrap">
               15–17 SEPT 2026 • GCET, ANAND
             </p>
           </motion.div>

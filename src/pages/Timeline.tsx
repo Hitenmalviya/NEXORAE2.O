@@ -11,6 +11,7 @@ export interface TimelineItem {
   category: 'Registration' | 'Tech' | 'Design' | 'Fun';
   description: string;
   venue?: string;
+  poster?: string;
   status: 'completed' | 'current' | 'upcoming';
 }
 
@@ -38,6 +39,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'RAS',
     description: 'Build an autonomous robot and navigate a maze filled with twists, turns, and unexpected challenges.',
     venue: 'Foyer',
+    poster: "/posters/Mind Flayer's maze.png",
     status: 'upcoming',
   },
   {
@@ -50,6 +52,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'WIE',
     description: 'Hear directly from founders as they discuss entrepreneurship, innovation, and the realities of building a startup.',
     venue: 'Audi',
+    poster: "/posters/Founder's Podcast Live.png",
     status: 'upcoming',
   },
   {
@@ -62,6 +65,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'IASPES',
     description: 'Take on fun mini-games while Chaos Cards introduce twists like blindfolds, no talking, or reversed instructions.',
     venue: 'Seminar',
+    poster: '/posters/Hawkins Havoc.png',
     status: 'upcoming',
   },
   {
@@ -74,6 +78,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'CS & SPS',
     description: 'A logic-based treasure hunt with puzzles, clues, and campus challenges. Decode, explore, and sprint across campus.',
     venue: 'Audi',
+    poster: '/posters/Frame 43.png',
     status: 'upcoming',
   },
   {
@@ -100,6 +105,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'CS',
     description: 'Put your coding skills to the test through technical quizzes, debugging rounds, and competitive programming.',
     venue: 'Seminar',
+    poster: '/posters/Code Red .png',
     status: 'upcoming',
   },
   {
@@ -112,6 +118,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'RAS',
     description: 'Engineering drop challenge by building protective shields to save raw egg payloads from multi-floor drops.',
     venue: 'Parking and ground',
+    poster: '/posters/Frame 45.png',
     status: 'upcoming',
   },
   {
@@ -124,6 +131,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'SPS',
     description: 'Battle across a high-intensity esports league, earning points through eliminations and placement matches.',
     venue: 'Labs',
+    poster: '/posters/Demogrounds.png',
     status: 'upcoming',
   },
   {
@@ -136,6 +144,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'SIGHT',
     description: 'A perfect blend of brains, strength, and physical endurance. Solve challenges and power through obstacles.',
     venue: 'Front lawn',
+    poster: '/posters/Frame 47.png',
     status: 'upcoming',
   },
   {
@@ -162,6 +171,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'IASPES',
     description: 'A thrilling game of trust, strategy, and deception. Complete missions, expose hidden Traitors and outsmart opponents.',
     venue: 'Audi',
+    poster: '/posters/Frame 44.png',
     status: 'upcoming',
   },
   {
@@ -174,6 +184,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'SPS',
     description: 'The final esports battleground stage where qualifying top teams compete for the ultimate championship title.',
     venue: 'Labs',
+    poster: '/posters/Demogrounds.png',
     status: 'upcoming',
   },
   {
@@ -186,6 +197,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'WIE',
     description: 'Creative Pitch Reel Challenge blending visual storytelling with innovation in an exciting showcase.',
     venue: 'Seminar',
+    poster: '/posters/PitchFrame.png',
     status: 'upcoming',
   },
   {
@@ -198,6 +210,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'SIGHT',
     description: 'Follow clues, solve mind-bending puzzles, and combine logic, speed and teamwork to escape before time runs out.',
     venue: 'A323 classroom',
+    poster: '/posters/Frame 46.png',
     status: 'upcoming',
   },
   {
@@ -413,9 +426,22 @@ export default function Timeline() {
                         </div>
 
                         {/* Description */}
-                        <p className="text-muted text-xs sm:text-sm font-light leading-relaxed mb-4">
+                        <p className="text-muted text-xs sm:text-sm font-light leading-relaxed mb-3">
                           {item.description}
                         </p>
+
+                        {/* Event Poster Image Banner */}
+                        {item.poster && (
+                          <div className="my-3 rounded-lg overflow-hidden border border-white/10 bg-black/50 h-36 sm:h-48 w-full relative">
+                            <img
+                              src={item.poster}
+                              alt={item.title}
+                              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 brightness-95"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+                          </div>
+                        )}
 
                         {/* Footer Info Row */}
                         <div

@@ -132,13 +132,16 @@ export default function CinematicHero() {
             />
           </motion.div>
 
-          {/* Centered Event Information Line */}
-          <motion.p
+          {/* Centered Event Information Pill */}
+          <motion.div
             variants={item}
-            className="font-mono text-xs sm:text-sm md:text-base font-medium uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white/90 text-center my-4 sm:my-5 drop-shadow-[0_0_15px_rgba(220,38,38,0.6)]"
+            whileHover={{ y: -2, scale: 1.02 }}
+            className="px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full border border-white/10 bg-[#0a0a0c]/25 backdrop-blur-[22px] shadow-[0_12px_40px_rgba(0,0,0,0.7),0_0_20px_rgba(220,38,38,0.15)] hover:border-red-500/30 hover:shadow-[0_15px_45px_rgba(220,38,38,0.3)] transition-all duration-300 pointer-events-auto"
           >
-            15–17 SEPT 2026 • GCET, ANAND
-          </motion.p>
+            <p className="font-sans font-medium text-xs sm:text-sm uppercase tracking-[0.28em] text-white/90 text-center whitespace-nowrap">
+              15–17 SEPT 2026 • GCET, ANAND
+            </p>
+          </motion.div>
 
           <div className="st-buttons-container">
             <motion.button

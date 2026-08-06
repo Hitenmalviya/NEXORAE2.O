@@ -29,6 +29,7 @@ export const EVENTS: Event[] = [
     difficulty: 'hard',
     description: 'System Breach Edition is a thrilling game of trust, strategy, and deception. Complete missions, expose the hidden Traitors and outsmart your opponents before the final system breach.',
     poster: '/posters/Frame 45.png',
+    team: { min: 10, max: 10 },
     icon: '🕵️',
     registrationUrl: 'https://forms.gle/erAedpsXxYrZHBc48',
   },

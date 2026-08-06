@@ -233,47 +233,6 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
     snapToNearest(position, indexVelocity);
   }, [position, getCardWidth, snapToNearest]);
 
-  // ─── Mouse Wheel Support ───
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-
-    let wheelTimeout: ReturnType<typeof setTimeout>;
-
-    const onWheel = (e: WheelEvent) => {
-      // Only capture dominant horizontal scrolling or vertical with no horizontal
-      const absX = Math.abs(e.deltaX);
-      const absY = Math.abs(e.deltaY);
-
-      // Use whichever axis has more delta
-      const delta = absX > absY ? e.deltaX : e.deltaY;
-      if (Math.abs(delta) < 2) return;
-
-      e.preventDefault();
-
-      cancelAnimationFrame(momentumRaf.current);
-      clearTimeout(wheelTimeout);
-
-      const cardW = getCardWidth();
-      const indexDelta = delta / cardW;
-      setPosition((prev) => prev + indexDelta);
-
-      // Snap after wheel stops
-      wheelTimeout = setTimeout(() => {
-        setPosition((prev) => {
-          snapToNearest(prev, 0);
-          return prev;
-        });
-      }, 120);
-    };
-
-    stage.addEventListener('wheel', onWheel, { passive: false });
-    return () => {
-      stage.removeEventListener('wheel', onWheel);
-      clearTimeout(wheelTimeout);
-    };
-  }, [getCardWidth, snapToNearest]);
-
   // ─── Keyboard navigation ───
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

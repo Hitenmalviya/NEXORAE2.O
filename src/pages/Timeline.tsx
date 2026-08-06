@@ -118,7 +118,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'RAS',
     description: 'Engineering drop challenge by building protective shields to save raw egg payloads from multi-floor drops.',
     venue: 'Parking and ground',
-    poster: '/posters/Frame 43.png',
+    poster: '/posters/Frame 44.png',
     status: 'upcoming',
   },
   {
@@ -144,7 +144,7 @@ const TIMELINE_DATA: TimelineItem[] = [
     organizer: 'SIGHT',
     description: 'A perfect blend of brains, strength, and physical endurance. Solve challenges and power through obstacles.',
     venue: 'Front lawn',
-    poster: '/posters/Frame 44.png',
+    poster: '/posters/Frame 43.png',
     status: 'upcoming',
   },
   {

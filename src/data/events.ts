@@ -2,6 +2,17 @@ import type { Event } from '@/types';
 
 export const EVENTS: Event[] = [
   {
+    id: 'MUN',
+    name: ' GLOBAL DIPLOMACY PEACE MODEL UNITED NATIONS — GDPMUN ',
+    category: 'tech',
+    difficulty: 'hard',
+    description: 'GDPMUN , the brainchild of IEEE GCET Student Branch in collaboration with IPMUN, brings young minds together to debate pressing issues, practise diplomacy, and embrace Global Citizenship through dialogue, collaboration, critical thinking, and diverse perspectives.',
+    poster: '/posters/MUN.jpeg',
+    team: { min: 1, max: 1 },
+    icon: '💡',
+    registrationUrl: 'https://www.ipmun.in/gdp-mun',
+  },
+  {
     id: 'upside-down',
     name: ' Upside Down: The Final Portal',
     category: 'fun',
@@ -51,7 +62,7 @@ export const EVENTS: Event[] = [
     category: 'tech',
     difficulty: 'hard',
     description: 'Put your coding skills to the test through technical quizzes, debugging rounds, and a thrilling finale on CodeChef. Every bug is a clue! Think fast, code faster, and rise to the top.',
-    poster: '/posters/Code Red .webp',
+    poster: '/posters/CR.jpeg',
     team: { min: 1, max: 4 },
     icon: '🚨',
     registrationUrl: 'https://forms.gle/5dNbYdRVU1ppSYtQ9',

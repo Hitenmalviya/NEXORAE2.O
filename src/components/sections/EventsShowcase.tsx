@@ -3,8 +3,11 @@ import { CoverflowGallery, type CoverflowItem } from '@/components/ui/CoverflowG
 import { EVENTS, EVENT_CATEGORIES } from '@/data/events';
 import FogEffect from '@/components/ui/FogEffect';
 import { GOOGLE_FORM_URL } from '@/utils/constants';
+import { useRegistrationGate } from '@/context/RegistrationGateContext';
+
 
 export default function EventsShowcase() {
+  const { handleRegister } = useRegistrationGate();
   const [activeCategory, setActiveCategory] = useState('all');
 
   // Filter events based on active category
@@ -32,7 +35,7 @@ export default function EventsShowcase() {
 
   const handleRegisterClick = (item: CoverflowItem) => {
     const url = item.registrationUrl || GOOGLE_FORM_URL;
-    window.open(url, '_blank', 'noopener,noreferrer');
+    handleRegister(url);
   };
 
   return (

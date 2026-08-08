@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { GOOGLE_FORM_URL } from '@/utils/constants';
+
 
 export interface CoverflowItem {
   id: string;
@@ -378,23 +378,21 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
                     OPEN FOR ALL
                   </div>
                 ) : (
-                  <a
-                    href={item.registrationUrl || GOOGLE_FORM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
                     onClick={(e) => {
                       e.stopPropagation();
+                      onRegister(item);
                     }}
                     className={`w-full py-2.5 sm:py-3 rounded-full font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)] block text-center ${
                       isActive
-                        ? 'bg-gradient-to-r from-red-600 via-red-500 to-red-600 hover:brightness-125 border border-red-400/60 shadow-[0_0_30px_rgba(220,38,38,0.7)] hover:scale-[1.02] active:scale-[0.98]'
+                        ? 'bg-gradient-to-r from-red-600 via-red-500 to-red-600 hover:brightness-125 border border-red-400/60 shadow-[0_0_30px_rgba(220,38,38,0.7)] hover:scale-[1.02] active:scale-[0.98] cursor-hover'
                         : 'bg-white/10 border border-white/20 hover:bg-white/20'
                     }`}
                     onMouseEnter={() => document.body.classList.add('cursor-hover')}
                     onMouseLeave={() => document.body.classList.remove('cursor-hover')}
                   >
                     ENTER ARENA →
-                  </a>
+                  </button>
                 )}
               </div>
             </motion.div>

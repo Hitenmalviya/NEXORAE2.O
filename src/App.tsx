@@ -7,6 +7,9 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Preloader from '@/components/ui/Preloader';
 import ScrollToTop from '@/components/layout/ScrollToTop';
+import { RegistrationGateProvider } from '@/context/RegistrationGateContext';
+import RegistrationGate from '@/components/ui/RegistrationGate';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -106,6 +109,9 @@ function AppInner() {
         <AnimatedRoutes />
       </main>
 
+      {/* Registration Gate Modal */}
+      <RegistrationGate />
+
       {/* Footer */}
       <Footer />
     </>
@@ -115,7 +121,9 @@ function AppInner() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppInner />
+      <RegistrationGateProvider>
+        <AppInner />
+      </RegistrationGateProvider>
     </BrowserRouter>
   );
 }

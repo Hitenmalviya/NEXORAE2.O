@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { EVENTS, EVENT_CATEGORIES } from '@/data/events';
 import type { Event } from '@/types';
 import { GOOGLE_FORM_URL } from '@/utils/constants';
+import { useRegistrationGate } from '@/context/RegistrationGateContext';
+
 
 const categoryBadges: Record<string, { label: string; border: string; glow: string }> = {
   tech: {
@@ -189,6 +191,7 @@ function ClassifiedEventCard({
 }
 
 export default function Events() {
+  const { handleRegister } = useRegistrationGate();
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   useEffect(() => {
@@ -197,7 +200,7 @@ export default function Events() {
 
   const handleRegisterClick = (event: Event) => {
     const url = event.registrationUrl || GOOGLE_FORM_URL;
-    window.open(url, '_blank', 'noopener,noreferrer');
+    handleRegister(url);
   };
 
   const filteredEvents = useMemo(() => {

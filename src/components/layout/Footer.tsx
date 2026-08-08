@@ -126,7 +126,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Credits Wrapper */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-4xl mx-auto pt-2">
           <p className="text-sm sm:text-base font-medium text-white tracking-wide drop-shadow-md">
             Published by{' '}
             <a
@@ -140,19 +140,7 @@ export default function Footer() {
               Hiten Malviya
             </a>
           </p>
-          <p className="text-sm sm:text-base font-medium text-white tracking-wide drop-shadow-md">
-            Mentor by:{' '}
-            <a
-              href="https://github.com/zainab1305"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-red-500 underline underline-offset-4 transition-colors duration-300"
-              onMouseEnter={() => document.body.classList.add('cursor-hover')}
-              onMouseLeave={() => document.body.classList.remove('cursor-hover')}
-            >
-              Zainab Jambughoda
-            </a>
-          </p>
+          
         </div>
       </div>
     </footer>

@@ -4,22 +4,22 @@ import { EVENTS, EVENT_CATEGORIES } from '@/data/events';
 import type { Event } from '@/types';
 import { GOOGLE_FORM_URL } from '@/utils/constants';
 
-const categoryBadges: Record<string, { label: string; tag: string; border: string; glow: string }> = {
+const categoryBadges: Record<string, { label: string; border: string; glow: string }> = {
   tech: {
     label: 'TECH PROTOCOL',
-    tag: 'SEC-A // HARDWARE & CODE',
+    
     border: 'border-red-900/40 group-hover:border-red-600/70',
     glow: 'from-red-950/30 via-zinc-950/90 to-black/95 shadow-[0_0_30px_rgba(220,38,38,0.1)]',
   },
   design: {
     label: 'CREATIVE VECTOR',
-    tag: 'SEC-B // UI/UX & VISUALS',
+    
     border: 'border-purple-900/40 group-hover:border-purple-600/70',
     glow: 'from-purple-950/30 via-slate-950/90 to-black/95 shadow-[0_0_30px_rgba(168,85,247,0.1)]',
   },
   fun: {
     label: 'CHAOS ARENA',
-    tag: 'SEC-C // STRATEGY & REACTION',
+    
     border: 'border-emerald-900/40 group-hover:border-emerald-600/70',
     glow: 'from-emerald-950/25 via-zinc-950/90 to-black/95 shadow-[0_0_30px_rgba(16,185,129,0.1)]',
   },
@@ -100,9 +100,7 @@ function ClassifiedEventCard({
               </span>
             )}
           </div>
-          <span className="text-[9px] sm:text-[10px] uppercase font-mono tracking-[0.2em] sm:tracking-[0.25em] text-zinc-500">
-            {categoryConfig.tag}
-          </span>
+          
         </div>
 
         <span className="text-[8px] sm:text-[9px] uppercase font-mono tracking-widest text-zinc-400 border border-white/10 px-2 py-0.5 sm:py-1 rounded bg-black/40 shrink-0">
@@ -259,7 +257,7 @@ export default function Events() {
                 className="absolute -top-6 sm:-top-20 left-0 text-[8rem] xs:text-[12rem] sm:text-[18rem] md:text-[22rem] font-black text-white/[0.03] font-mono leading-none select-none pointer-events-none"
                 aria-hidden="true"
               >
-                11
+                12
               </div>
 
               <div className="relative z-10 max-w-3xl">
@@ -294,7 +292,7 @@ export default function Events() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="font-mono text-[11px] sm:text-sm tracking-[0.15em] sm:tracking-[0.25em] text-zinc-400 uppercase font-light leading-relaxed max-w-lg"
                 >
-                  11 challenges. 1 dimension. No way back.
+                  12 challenges. 1 dimension. No way back.
                 </motion.p>
               </div>
 
@@ -302,7 +300,7 @@ export default function Events() {
               <div className="mt-6 sm:mt-10 pt-4 sm:pt-6 border-t border-white/10 flex items-center justify-between gap-2 sm:gap-4 font-mono text-[9px] sm:text-[10px] text-zinc-400 uppercase tracking-widest">
                 <div className="flex items-center gap-2">
                   <span className="text-red-500 font-bold">SYSTEM LOG:</span>
-                  <span>11 ACTIVE ARENAS DETECTED</span>
+                  <span>12 ACTIVE ARENAS DETECTED</span>
                 </div>
               </div>
             </div>

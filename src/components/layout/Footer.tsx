@@ -85,7 +85,7 @@ export default function Footer() {
               className="h-12 sm:h-16 w-auto object-contain filter drop-shadow-[0_0_20px_rgba(220,38,38,0.8)] group-hover:scale-105 transition-transform duration-300"
             />
             <span className="inline-flex items-baseline">
-              <img src="/images/wt.webp" alt="NEXORAE 2.0 Emblem" className="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300" />
+              <img src="/images/wt.png" alt="NEXORAE 2.0 Emblem" className="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(220,38,38,0.7)] group-hover:scale-105 transition-transform duration-300" />
             </span>
           </Link>
         </div>

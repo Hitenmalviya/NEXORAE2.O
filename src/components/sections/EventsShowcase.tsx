@@ -54,10 +54,6 @@ export default function EventsShowcase() {
 
       {/* Section Header & Category Filters */}
       <div className="relative z-10 w-full max-w-5xl mx-auto text-center px-4 sm:px-6 mb-2 sm:mb-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] font-mono tracking-[0.3em] uppercase text-zinc-400 mb-3 backdrop-blur-md">
-          <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-          CLASSIFIED ARENAS // 3D COVERFLOW
-        </div>
 
         <h2 className="font-display text-2xl sm:text-4xl md:text-6xl font-black uppercase tracking-wider text-white drop-shadow-2xl mb-4">
           THE BATTLE <span className="text-glow">BEGINS</span>

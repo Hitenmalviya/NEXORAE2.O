@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { GOOGLE_FORM_URL } from '@/utils/constants';
 
 export interface CoverflowItem {
   id: string;
@@ -175,8 +176,8 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
 
   // ─── Pointer (Touch + Mouse) Drag Handling ───
   const onPointerDown = useCallback((e: React.PointerEvent) => {
-    // Ignore if clicking a button
-    if ((e.target as HTMLElement).closest('button')) return;
+    // Ignore if clicking a button or link
+    if ((e.target as HTMLElement).closest('button, a')) return;
 
     cancelAnimationFrame(momentumRaf.current);
     const ds = dragState.current;
@@ -377,14 +378,14 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
                     OPEN FOR ALL
                   </div>
                 ) : (
-                  <button
+                  <a
+                    href={item.registrationUrl || GOOGLE_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (!dragState.current.hasMoved) {
-                        onRegister(item);
-                      }
                     }}
-                    className={`w-full py-2.5 sm:py-3 rounded-full font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)] ${
+                    className={`w-full py-2.5 sm:py-3 rounded-full font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)] block text-center ${
                       isActive
                         ? 'bg-gradient-to-r from-red-600 via-red-500 to-red-600 hover:brightness-125 border border-red-400/60 shadow-[0_0_30px_rgba(220,38,38,0.7)] hover:scale-[1.02] active:scale-[0.98]'
                         : 'bg-white/10 border border-white/20 hover:bg-white/20'
@@ -393,7 +394,7 @@ export function CoverflowGallery({ items, onRegister, className = '' }: Coverflo
                     onMouseLeave={() => document.body.classList.remove('cursor-hover')}
                   >
                     ENTER ARENA →
-                  </button>
+                  </a>
                 )}
               </div>
             </motion.div>

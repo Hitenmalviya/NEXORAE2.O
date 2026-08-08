@@ -196,3 +196,13 @@ main.sphere-main {
 .edge-fade--bottom {
   bottom: 0;
 }
+
+@media (max-width: 639px) {
+  main.sphere-main {
+    touch-action: pan-y;
+  }
+}
+
+body.dg-scroll-lock {
+  overflow: hidden !important;
+}

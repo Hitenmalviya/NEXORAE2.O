@@ -133,7 +133,7 @@ export default function PreviousGlimpses() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="w-full h-[65vh] sm:h-[80vh] md:h-[85vh] min-h-[450px] relative overflow-hidden"
+          className="w-full h-[320px] sm:h-[80vh] md:h-[85vh] sm:min-h-[450px] relative overflow-hidden"
         >
           <DomeGallery
             images={DOME_PHOTOS}

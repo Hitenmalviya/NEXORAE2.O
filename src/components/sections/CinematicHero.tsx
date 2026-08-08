@@ -126,7 +126,7 @@ export default function CinematicHero() {
         <div className="st-center-container">
           <motion.div className="st-logo-wrapper" variants={item}>
             <img
-              src="/images/l2.webp"
+              src="/images/l2.png"
               alt="NEXORAE 2.0 - Innovation Beyond Horizons"
               className="st-logo-img"
             />

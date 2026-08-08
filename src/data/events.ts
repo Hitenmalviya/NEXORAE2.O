@@ -7,7 +7,7 @@ export const EVENTS: Event[] = [
     category: 'design',
     difficulty: 'hard',
     description: 'GDPMUN , the brainchild of IEEE GCET Student Branch in collaboration with IPMUN, brings young minds together to debate pressing issues, practise diplomacy, and embrace Global Citizenship through dialogue, collaboration, critical thinking, and diverse perspectives.',
-    poster: '/posters/MUN.jpeg',
+    poster: '/posters/MUN.png',
     team: { min: 1, max: 1 },
     icon: '💡',
     registrationUrl: 'https://www.ipmun.in/gdp-mun',

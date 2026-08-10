@@ -13,6 +13,32 @@ interface RegistrationGateContextType {
 
 const RegistrationGateContext = createContext<RegistrationGateContextType | undefined>(undefined);
 
+// Safe localStorage helper to prevent crashes in iframe/sandboxed environments (e.g. Vercel preview pane, strict browser settings)
+const safeStorage = {
+  getItem: (key: string): string | null => {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      console.warn('[RegistrationGate] localStorage.getItem access blocked:', e);
+      return null;
+    }
+  },
+  setItem: (key: string, value: string): void => {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {
+      console.warn('[RegistrationGate] localStorage.setItem access blocked:', e);
+    }
+  },
+  removeItem: (key: string): void => {
+    try {
+      localStorage.removeItem(key);
+    } catch (e) {
+      console.warn('[RegistrationGate] localStorage.removeItem access blocked:', e);
+    }
+  }
+};
+
 export const RegistrationGateProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [pendingUrl, setPendingUrl] = useState<string | null>(null);
@@ -20,7 +46,7 @@ export const RegistrationGateProvider: React.FC<{ children: React.ReactNode }> =
 
   // Load NEXORAE ID from localStorage on mount
   useEffect(() => {
-    const storedId = localStorage.getItem('nexorae_id');
+    const storedId = safeStorage.getItem('nexorae_id');
     if (storedId) {
       setNexoraeId(storedId);
     }
@@ -37,7 +63,7 @@ export const RegistrationGateProvider: React.FC<{ children: React.ReactNode }> =
   };
 
   const verifyAndProceed = () => {
-    localStorage.setItem('nexorae_id', 'true');
+    safeStorage.setItem('nexorae_id', 'true');
     setNexoraeId('true');
     setIsOpen(false);
 
@@ -54,7 +80,7 @@ export const RegistrationGateProvider: React.FC<{ children: React.ReactNode }> =
       return;
     }
 
-    const storedId = localStorage.getItem('nexorae_id');
+    const storedId = safeStorage.getItem('nexorae_id');
     if (storedId) {
       window.open(eventUrl, '_blank', 'noopener,noreferrer');
     } else {
@@ -63,7 +89,7 @@ export const RegistrationGateProvider: React.FC<{ children: React.ReactNode }> =
   };
 
   const logout = () => {
-    localStorage.removeItem('nexorae_id');
+    safeStorage.removeItem('nexorae_id');
     setNexoraeId(null);
   };
 

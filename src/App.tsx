@@ -71,15 +71,34 @@ function AnimatedRoutes() {
   );
 }
 
+// Safe sessionStorage helper to prevent crashes in iframe/sandboxed environments
+const safeSessionStorage = {
+  getItem: (key: string): string | null => {
+    try {
+      return sessionStorage.getItem(key);
+    } catch (e) {
+      console.warn('[App] sessionStorage.getItem access blocked:', e);
+      return null;
+    }
+  },
+  setItem: (key: string, value: string): void => {
+    try {
+      sessionStorage.setItem(key, value);
+    } catch (e) {
+      console.warn('[App] sessionStorage.setItem access blocked:', e);
+    }
+  }
+};
+
 // Inner component
 function AppInner() {
   // Check if preloader was already shown this session
   const [preloaderComplete, setPreloaderComplete] = useState(() => {
-    return sessionStorage.getItem('nexorae-preloaded') === '1';
+    return safeSessionStorage.getItem('nexorae-preloaded') === '1';
   });
 
   const handlePreloaderComplete = () => {
-    sessionStorage.setItem('nexorae-preloaded', '1');
+    safeSessionStorage.setItem('nexorae-preloaded', '1');
     setPreloaderComplete(true);
   };
 

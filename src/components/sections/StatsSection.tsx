@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useCountUp } from '@/hooks/useInView';
+import { EVENTS } from '@/data/events';
 
 interface StatItemProps {
   value: number;
@@ -83,7 +84,7 @@ export default function StatsSection() {
 
       <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
-          <StatItem value={12} label="Events" delay={0} />
+          <StatItem value={EVENTS.length} label="Events" delay={0} />
           <StatItem value={3} label="Categories" delay={0.1} />
           <StatItem value={500} suffix="+" label="Participants" delay={0.2} />
           <StatItem value={70} prefix="₹" suffix="K+" label="Prize Pool" delay={0.3} />
